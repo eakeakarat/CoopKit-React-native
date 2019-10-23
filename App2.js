@@ -30,76 +30,36 @@ export default class App extends Component {
     return (
       <View style={{flex: 1,flexDirection: 'column',}}>
         <View style={{flexDirection: 'row' ,backgroundColor:'white', flex: 0.1,}}>
-          <SettingButton text="Setting" f={0.15} />
+          <BackButton text="Setting" f={0.15} />
           <NormalText text="Co-op Kit" f={0.5}/>
-          <SearchButton text="Search" f={0.15}/>
-          <MenuButton text="Menu" f={0.2}/>
+          <ShareButton text="Search" f={0.15}/>
+          <FavButton text="Menu" f={0.2}/>
         </View>
+         
+        <View style={{flexDirection: 'column',flex: 0.82}}>
+          <View style={{flex:0.5,margin:10}}>
+            <TextInput style={{flex:0.5,borderWidth: 1}}/>
+            <Text> Text:  </Text>
+            <Text> Text: ........................ </Text>
+          </View>
 
-        <View style={{flexDirection: 'row',backgroundColor:'red', flex: 0.07}}>
-          <SecondField text="menu1" f={0.25} />
-          <SecondField text="menu1" f={0.25} />
-          <SecondField text="menu1" f={0.25} />
-          <SecondField text="menu1" f={0.25} />          
-        </View>
-        
-        <ScrollView style={{flexDirection: 'column',flex: 0.75,marginTop: 10}}>
-          <View style={{alignItems:'center'}}>
-            <View style={Styles.roomBox} >
-            {/* <View> */}
-            {/* <View style={Styles.hasBorder}> */}
-              {/* <TextBox place="Type here!"/> */}
-
-              <View style={{flex:1,flexDirection:'row',marginTop:10}}>
-                <RoomPic/>
-                <View style={{flex:1,flexDirection:'row',
-                justifyContent:'flex-end',alignItems:'flex-end'}}>
-                  <RoomDate/>
-                </View>
-              </View>
-              <View style={{flexDirection:'row',borderTopWidth:1,marginTop:10}}>
-                <RoomDecription/>
-                <RoomDecription/>
-              </View>
-              <View style={{flexDirection:'row'}}>
-                <RoomType/>
-                <RoomType/>
-                <View style={{flex:1,alignItems:'flex-end',marginRight: 10}}>
-                  <RoomStatus/>
-                </View>
-              </View>
+          <View style={{flex:0.5}}>
+            <View style={{flex: 1 ,borderWidth: 1}}>
+              <Text> Test</Text>
+              <PicBox/>
             </View>
           </View>
-      
-        </ScrollView>
+        </View>
 
         <View style={{flexDirection: 'row',backgroundColor:'grey', flex: 0.08}}>
           <Text style={{flex:0.25}} > Text </Text>
-          <Text style={{flex:0.25}} > Text </Text>
-          <Text style={{flex:0.25}} > Text </Text>
-          <Text style={{flex:0.25}} > Text </Text>   
         </View>
       </View>
     );
   }
 }
 
-class HeaderField extends Component {
-  render() {
-    let w = this.props.f;
-    return <View style={{justifyContent:'center',alignItems:'center',flex: w}}>
-    <Text >{this.props.text}</Text>
-    </View>;
-  }
-};
-class SecondField extends Component {
-  render() {
-    let w = this.props.f;
-    return <View style={{justifyContent:'center',alignItems:'center',flex: w}}>
-    <Text >{this.props.text}</Text>
-    </View>;
-  }
-};
+
 class NormalText extends Component {
   render() {
     let w = this.props.f;
@@ -108,7 +68,7 @@ class NormalText extends Component {
     </View>;
   }
 };
-class SettingButton extends Component {
+class BackButton extends Component {
   constructor(props){
     super(props)
   }
@@ -124,7 +84,7 @@ class SettingButton extends Component {
         // underlayColor="grey"
         >
           <Image resizeMode="center"
-            source={require('./image/Settings.png')}
+            source={require('./image/back.png')}
             style={{justifyContent:'center',alignItems:'center',flex: 1}}
           />
         </TouchableHighlight>
@@ -132,7 +92,7 @@ class SettingButton extends Component {
     );
   }
 };
-class MenuButton extends Component {
+class FavButton extends Component {
   constructor(props){
     super(props)
   }
@@ -148,7 +108,7 @@ class MenuButton extends Component {
         // underlayColor="red"
         >
           <Image resizeMode="center"
-            source={require('./image/Menu.png')}
+            source={require('./image/star.png')}
             style={{justifyContent:'center',alignItems:'center',flex: 1}}
           />
         </TouchableHighlight>
@@ -156,7 +116,7 @@ class MenuButton extends Component {
     );
   }
 };
-class SearchButton extends Component {
+class ShareButton extends Component {
   constructor(props){
     super(props)
   }
@@ -172,7 +132,7 @@ class SearchButton extends Component {
         // underlayColor="red"
         >
           <Image resizeMode="center"
-            source={require('./image/Search.png')}
+            source={require('./image/share.png')}
             style={{justifyContent:'center',alignItems:'center',flex: 0.8}}
           />
         </TouchableHighlight>
@@ -200,74 +160,23 @@ class TextBox extends Component {
     );
   }
 };
-class RoomPic extends Component {
+class PicBox extends Component {
+  constructor(props){
+    super(props)
+    this.state = {text : ''};
+  }
   render() {
     return(
-        <View >
+        <View style={{margin:10}}>
           <Image resizeMode="center"
-            source={require('./image/Search.png')}
-            style={{width:250,height:100}}
+            source={require('./image/star.png')}
+            style={{justifyContent:'center',alignItems:'center',flex: 0.2}}
           />
         </View>
     );
   }
 };
-class RoomDecription extends Component{
-  render() {
-    return(
-        <View style={{height: 50,marginTop:5}}>
-          <Text>
-            Text bra bra
-          </Text>
-        </View>
-    );
-  }
-};
-class RoomType extends Component{
-  render() {
-    return(
-        <View style={{
-          borderRadius: 40,borderWidth: 1,
-          borderColor: 'black',width: 50,alignItems:'center',
-          margin: 5
-          }}>
-          <Text>
-            Type
-          </Text>
-        </View>
-    );
-  }
-};
-class RoomStatus extends Component{
-  render() {
-    return(
-        <View style={{
-          borderRadius: 4,borderWidth: 1,
-          borderColor: 'black',width: 100,height: 25,
-          alignItems:'center',
-          }}>
-          <Text>
-            Status
-          </Text>
-        </View>
-    );
-  }
-};
-class RoomDate extends Component{
-  render() {
-    return(
-        <View style={{
-          borderRadius: 4,borderWidth: 1,
-          borderColor: 'black',width: 150,height: 25,
-          alignItems:'center',marginRight:10,backgroundColor:'grey'
-          }}>
-          <Text>
-            Date
-          </Text>
-        </View>
-    );
-  }
-};
+
 
 // RoomPic
 // RoomType
