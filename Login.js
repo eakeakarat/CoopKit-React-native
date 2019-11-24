@@ -29,16 +29,31 @@ import {
 export default class App extends Component {
   render() {
     return (
+    
       <View style={{flex: 1,alignItems:'center'}}>
         <View style={{flexDirection: 'column',justifyContent:'flex-start',alignItems:'center'}}>
-          <UserPic/>
+          <View style={{marginTop:50}}>
+          <FacebookLogin/>
+          </View>
+          <View style={{marginBottom:50}}>
+          <GoogleLogin/>
+          </View>
+          <View style={{borderBottomWidth: 1,width:250,alignItems:'center'}}>
+          <Text> หรือ </Text>
+          </View>
+          <View style={{flexDirection: 'column',justifyContent:'flex-start',alignItems:'center'}} >
           <UserInput ph='อีเมล์'/>
           <PasswordInput ph='รหัสผ่าน'/>
+          <View style={{marginTop: 10}}></View>
           <ForgotPassword/>
+          <View style={{marginTop: 10}}></View>
+          </View>
         </View> 
-        <View Styles={{justifyContent:'flex-end',alignItems:'flex-end'}}>
+        <View Styles={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
           <CreateAccount/>
+          <View style={{marginTop: 20,alignItems:'flex-end'}}>
           <LoginButton/>
+          </View>
         </View>
       </View>
     );
@@ -69,14 +84,14 @@ class UserInput extends Component {
 
   render() {
 
-    return <View style={{borderWidth: 1,margin:10, flexDirection:'row'}}>
+    return <View style={{borderBottomWidth: 1, margin:10, flexDirection:'row'}}>
     <View style={{ alignItems:'flex-start', justifyContent:'center',
     flexDirection:'column'}}>
-      <Image resizeMode="center"
+      {/* <Image resizeMode="center"
         source={require('./image/User.png')}
         style={{justifyContent:'center',alignItems:'center',
         width: 40,height: 40}}
-      />
+      /> */}
     </View>
     <View style={{flex:1,justifyContent:'flex-start',alignItems:'flex-start'}}>
     <TextInput placeholder={this.props.ph}/>
@@ -104,19 +119,19 @@ class PasswordInput extends Component {
 
   render() {
 
-    return <View style={{borderWidth: 1,margin:10, flexDirection:'row'}}>
-    <View style={{ alignItems:'center', justifyContent:'center',
+    return <View style={{borderBottomWidth: 1, margin:10, flexDirection:'row'}}>
+    {/* <View style={{ alignItems:'center', justifyContent:'center',
     flexDirection:'column'}}>
       <Image resizeMode="center"
         source={require('./image/Password.png')}
         style={{justifyContent:'center',alignItems:'center',
         width: 40,height: 40}}
       />
-    </View>
+    </View> */}
     <View style={{flex:1,justifyContent:'flex-start',alignItems:'flex-start'}}>
       <TextInput secureTextEntry={this.state.hide} placeholder={this.props.ph} value='abc'/>
     </View>
-    <View style={{flex:1, alignItems:'flex-end', justifyContent:'center'}}>
+    {/* <View style={{flex:1, alignItems:'flex-end', justifyContent:'center'}}>
       <TouchableOpacity onPress={this.clicked} 
         // underlayColor="lightgray"
         >
@@ -126,7 +141,7 @@ class PasswordInput extends Component {
             width: 40,height: 40}}
           />
       </TouchableOpacity>
-    </View>
+    </View> */}
     
     {/* <Text> {this.state.eye} </Text> */}
     </View>;
@@ -142,7 +157,7 @@ class LoginButton extends Component {
   }
   render() {
     return (
-      <View style={{justifyContent:'center',alignItems:'flex-end'}}>
+      <View style={{justifyContent:'flex-end',alignItems:'flex-end'}}>
         <TouchableOpacity onPress={this.clicked}>
           <Image resizeMode="center"
             source={require('./image/NextButton.png')}
@@ -205,6 +220,42 @@ class CreateAccount extends Component {
     return <View style={{justifyContent:'center',alignItems:'center'}}>
     <TouchableOpacity onPress={this.clicked}>
       <Text style={{fontSize:13,textDecorationLine: 'underline'}}> สร้างบัญชีผู้ใช้ </Text>
+    </TouchableOpacity>
+    </View>;
+  }
+};
+class FacebookLogin extends Component {
+  clicked(){
+
+
+  }
+
+  render() {
+    return <View style={{justifyContent:'center',alignItems:'center'}}>
+    <TouchableOpacity onPress={this.clicked}>
+      <Image resizeMode="center"
+            source={require('./image/loginF.png')}
+            style={{justifyContent:'center',alignItems:'center',
+            width:200,height:40}}
+          />
+    </TouchableOpacity>
+    </View>;
+  }
+};
+class GoogleLogin extends Component {
+  clicked(){
+
+
+  }
+
+  render() {
+    return <View style={{justifyContent:'center',alignItems:'center'}}>
+    <TouchableOpacity onPress={this.clicked}>
+      <Image resizeMode="center"
+            source={require('./image/loginG.png')}
+            style={{justifyContent:'center',alignItems:'center',
+            width:200,height:40}}
+          />
     </TouchableOpacity>
     </View>;
   }

@@ -36,9 +36,9 @@ export default class App extends Component {
             <View style={Styles.gap}></View>
             <View style={Styles.progressBar}></View>
             <View style={Styles.gap}></View>
-            <View style={Styles.progressBarInactive}></View>
+            <View style={Styles.progressBar}></View>
             <View style={Styles.gap}></View>
-            <View style={Styles.progressBarInactive}></View>
+            <View style={Styles.progressBar}></View>
             <View style={Styles.gap}></View>
             <View style={Styles.progressBarInactive}></View>
             <View style={Styles.gap}></View>
@@ -60,15 +60,11 @@ export default class App extends Component {
 
         {/* </View> */}
 
-        <View style={{flex: 0.8,flexDirection: 'column'}} >
-          <UserInput ph='อีเมล์' ph1='ยืนยันอีเมล์'/>
-          <PasswordInput ph='รหัสผ่าน'/>
-          <Text>    *รหัสผ่านไม่เกิน 9 ตัวอักษร </Text>
-          <Text>    *ต้องการสัญลักษณ์อย่างน้อย 1 ตัวในรหัสผ่าน</Text>
-          <Text>    *ต้องการอักษรพิเศษอย่างน้อย 1 ตัวในรหัสผ่าน</Text>
-          <Text>    *ต้องการตัวเลขอย่างน้อย 1 ตัวในรหัสผ่าน</Text>
-          <PasswordInput ph="ยืนยันรหัสผ่าน"/>
-          <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
+        <View style={{marginTop: 30,flex: 0.8,flexDirection: 'column'}} >
+          <NormalPeople/>
+          <FarmerPeople/>
+          
+          <View style={{marginTop: 20,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
             <Cancel/>
             <NextButton/>
           </View>
@@ -79,65 +75,31 @@ export default class App extends Component {
   }
 }
 
-<UserInput ph="email"/>
 
-class UserInput extends Component {
-  constructor(props){
-    super(props);    
-  }
 
+
+class NormalPeople extends Component {
   render() {
-    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
-            <View style={Styles.inputBar}>
-              <TextInput placeholder={this.props.ph}/>
-            </View>
-            <View style={Styles.inputBar}>
-              <TextInput placeholder={this.props.ph1}/>
-            </View>
-          </View>;
+    return <View style={Styles.peopleButton}>
+    <Text >ผู้ใช้ทั่วไป</Text>
+    <Text style={{fontSize: 8 ,color: 'red'}} > *ใช้ได้เฉพาะฟีเจอร์ทั่วไป ไม่สามารถสร้างห้องได้</Text>
+    </View>;
   }
 };
+class FarmerPeople extends Component {
+  render() {
+    return <View style={Styles.peopleButton}>
+    <Text >เกษตรกร</Text>
+    </View>;
+  }
+};
+
+
 class ButtonText extends Component {
   render() {
     return <View style={Styles.center}>
     <Text style={{fontSize:8}} >{this.props.text}</Text>
     </View>;
-  }
-};
-class PasswordInput extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      hide: true,
-      // eye: 'Eye.png'
-    };      
-    
-  }
-  clicked = () => {      
-    this.setState(state => ({
-      // eye: state.hide === this.state.hide ? 'EyeWhenClick.png' : 'Eye.png',
-      hide: !state.hide,
-    }));
-  }
-
-  render() {
-
-    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
-            <View style={Styles.inputBar}>
-              <TextInput secureTextEntry={this.state.hide} placeholder={this.props.ph} value='abc'/>
-              <View style={{flex:1, alignItems:'flex-end', justifyContent:'center'}}>
-                <TouchableOpacity onPress={this.clicked} >
-                  <Image resizeMode="center"
-                    source={require('./image/EyeWhenClick.png')}
-                    style={{justifyContent:'center',alignItems:'center',
-                    width: 40,height: 40}}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>;
-
   }
 };
 class NextButton extends Component {
@@ -211,6 +173,17 @@ const Styles = StyleSheet.create({
    borderRadius: 5,
  },gap: {
     width: '4%'
+ },peopleButton: {
+   marginTop: 30,
+   marginLeft: 10,
+   marginRight: 10,
+   flex: 1,
+   borderWidth: 2,
+   height: 50,
+   alignItems: 'center',
+   justifyContent: 'center',
+
+
  }
 });
 

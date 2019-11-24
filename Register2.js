@@ -36,7 +36,7 @@ export default class App extends Component {
             <View style={Styles.gap}></View>
             <View style={Styles.progressBar}></View>
             <View style={Styles.gap}></View>
-            <View style={Styles.progressBarInactive}></View>
+            <View style={Styles.progressBar}></View>
             <View style={Styles.gap}></View>
             <View style={Styles.progressBarInactive}></View>
             <View style={Styles.gap}></View>
@@ -60,15 +60,19 @@ export default class App extends Component {
 
         {/* </View> */}
 
-        <View style={{flex: 0.8,flexDirection: 'column'}} >
-          <UserInput ph='อีเมล์' ph1='ยืนยันอีเมล์'/>
-          <PasswordInput ph='รหัสผ่าน'/>
-          <Text>    *รหัสผ่านไม่เกิน 9 ตัวอักษร </Text>
-          <Text>    *ต้องการสัญลักษณ์อย่างน้อย 1 ตัวในรหัสผ่าน</Text>
-          <Text>    *ต้องการอักษรพิเศษอย่างน้อย 1 ตัวในรหัสผ่าน</Text>
-          <Text>    *ต้องการตัวเลขอย่างน้อย 1 ตัวในรหัสผ่าน</Text>
-          <PasswordInput ph="ยืนยันรหัสผ่าน"/>
-          <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
+        <View style={{marginTop: 30,flex: 0.8,flexDirection: 'column'}} >
+          <HeadText text="ชื่อ-นามสกุล"/>
+          <NameInput ph='ชื่อ-นามสกุล'/>
+
+          <HeadText text="เบอร์โทรศัพท์"/>
+          <PhoneInput ph='เบอร์โทรศัพท์'/>
+
+          <HeadText text="เลขบัตรประชาชน"/>
+          <IdInput ph='เลขบัตรประชาชน'/>
+
+          <HeadText text="ที่อยู่"/>
+          <AddrInput ph='ที่อยู่'/>
+          <View style={{marginTop: 20,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
             <Cancel/>
             <NextButton/>
           </View>
@@ -79,22 +83,72 @@ export default class App extends Component {
   }
 }
 
-<UserInput ph="email"/>
 
-class UserInput extends Component {
+class NameInput extends Component {
   constructor(props){
     super(props);    
   }
 
   render() {
+
     return <View style={{flex:1, margin:10, flexDirection:'column'}}>
             <View style={Styles.inputBar}>
               <TextInput placeholder={this.props.ph}/>
             </View>
+          </View>;
+  }
+};
+class PhoneInput extends Component {
+  constructor(props){
+    super(props);    
+  }
+
+  render() {
+
+    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
             <View style={Styles.inputBar}>
-              <TextInput placeholder={this.props.ph1}/>
+              <TextInput placeholder={this.props.ph}/>
             </View>
           </View>;
+  }
+};
+class IdInput extends Component {
+  constructor(props){
+    super(props);    
+  }
+
+  render() {
+
+    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
+            <View style={Styles.inputBar}>
+              <TextInput placeholder={this.props.ph}/>
+            </View>
+          </View>;
+  }
+};
+class AddrInput extends Component {
+  constructor(props){
+    super(props);    
+  }
+
+  render() {
+
+    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
+            <View style={Styles.inputBar}>
+              <TextInput placeholder={this.props.ph}/>
+            </View>
+          </View>;
+  }
+};
+
+
+
+
+class HeadText extends Component {
+  render() {
+    return <View style={{marginLeft: 15}}>
+    <Text style={{fontSize:8}} >{this.props.text}</Text>
+    </View>;
   }
 };
 class ButtonText extends Component {
@@ -102,42 +156,6 @@ class ButtonText extends Component {
     return <View style={Styles.center}>
     <Text style={{fontSize:8}} >{this.props.text}</Text>
     </View>;
-  }
-};
-class PasswordInput extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      hide: true,
-      // eye: 'Eye.png'
-    };      
-    
-  }
-  clicked = () => {      
-    this.setState(state => ({
-      // eye: state.hide === this.state.hide ? 'EyeWhenClick.png' : 'Eye.png',
-      hide: !state.hide,
-    }));
-  }
-
-  render() {
-
-    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
-            <View style={Styles.inputBar}>
-              <TextInput secureTextEntry={this.state.hide} placeholder={this.props.ph} value='abc'/>
-              <View style={{flex:1, alignItems:'flex-end', justifyContent:'center'}}>
-                <TouchableOpacity onPress={this.clicked} >
-                  <Image resizeMode="center"
-                    source={require('./image/EyeWhenClick.png')}
-                    style={{justifyContent:'center',alignItems:'center',
-                    width: 40,height: 40}}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>;
-
   }
 };
 class NextButton extends Component {
