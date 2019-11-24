@@ -1,5 +1,4 @@
 
-import Icon from 'react-native-vector-icons/FontAwesome';
 import React, {Component} from 'react';
 import {
   SafeAreaView,
@@ -10,13 +9,11 @@ import {
   StatusBar,
   Button,
   TextInput,
+  TouchableHighlight,
   TouchableOpacity,
   Image,
   Alert
 } from 'react-native';
-import { Router, Scene, Reducer, Actions, ActionConst } from 'react-native-mobx';
-import NextPage from './Register4' ;
-import { observer } from "mobx-react/native";
 
 // import {
 //   Header,
@@ -28,7 +25,12 @@ import { observer } from "mobx-react/native";
 
 
 
-export default class App extends Component {
+// export default class App extends Component {
+class NextPage extends Component {
+  constructor(props){
+    super(props);
+  }
+
   render() {
     return (
 
@@ -42,7 +44,7 @@ export default class App extends Component {
             <View style={Styles.gap}></View>
             <View style={Styles.progressBar}></View>
             <View style={Styles.gap}></View>
-            <View style={Styles.progressBarInactive}></View>
+            <View style={Styles.progressBar}></View>
             <View style={Styles.gap}></View>
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
@@ -57,14 +59,8 @@ export default class App extends Component {
             <View style={Styles.gap}></View>
           </View> 
         </View>
-        {/* <View style={{flex: 0.1, marginTop: 20,borderWidth: 1,flexDirection: 'row'}} > */}
-          {/* <Text style={Styles.center}> 1. </Text> */}
-
-        {/* </View> */}
-
+        
         <View style={{marginTop: 30,flex: 0.8,flexDirection: 'column'}} >
-          <NormalPeople/>
-          <FarmerPeople/>
           
           <View style={{marginTop: 20,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
             <Cancel/>
@@ -77,24 +73,8 @@ export default class App extends Component {
   }
 }
 
+  
 
-
-
-class NormalPeople extends Component {
-  render() {
-    return <View style={Styles.peopleButton}>
-    <Text >ผู้ใช้ทั่วไป</Text>
-    <Text style={{fontSize: 8 ,color: 'red'}} > *ใช้ได้เฉพาะฟีเจอร์ทั่วไป ไม่สามารถสร้างห้องได้</Text>
-    </View>;
-  }
-};
-class FarmerPeople extends Component {
-  render() {
-    return <View style={Styles.peopleButton}>
-    <Text >เกษตรกร</Text>
-    </View>;
-  }
-};
 class ButtonText extends Component {
   render() {
     return <View style={Styles.center}>
@@ -108,9 +88,7 @@ class NextButton extends Component {
   }
 
   clicked(){
-    <Router >
-      <Scene key="nextapp" component={NextPage} title="Next" type={ActionConst.REPLACE} initial={true} />
-    </Router>
+
   }
   render() {
     return (
@@ -146,7 +124,12 @@ class Cancel extends Component{
 };
 
 const Styles = StyleSheet.create({
-  center: {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },center: {
     justifyContent:'center',
     alignItems:'center',
     width: '20%'
@@ -184,8 +167,6 @@ const Styles = StyleSheet.create({
    height: 50,
    alignItems: 'center',
    justifyContent: 'center',
-
-
  }
 });
 
