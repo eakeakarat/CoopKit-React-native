@@ -58,8 +58,8 @@ export default class Register extends Component {
           <Text>    *ต้องการอักษรพิเศษอย่างน้อย 1 ตัวในรหัสผ่าน</Text>
           <Text>    *ต้องการตัวเลขอย่างน้อย 1 ตัวในรหัสผ่าน</Text>
           <PasswordInput ph="ยืนยันรหัสผ่าน"/>
-          <View style={{flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
-            <Cancel/>
+          <View style={{marginTop:30 ,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
+            <Cancel navigation={this.props.navigation}/>
             <NextButton navigation={this.props.navigation}/>
           </View>
         </View>
@@ -87,21 +87,14 @@ class UserInput extends Component {
           </View>;
   }
 };
-const ButtonText = ({text}) => {
-  return (<View style={Styles.center}>
-  <Text style={{fontSize:8}} >{text}</Text>
-  </View>
-  );
-}
 class PasswordInput extends Component {
   constructor(props){
     super(props);
-
+    
     this.state = {
       hide: true,
       // eye: 'Eye.png'
     };      
-    
   }
   clicked = () => {      
     this.setState(state => ({
@@ -109,9 +102,7 @@ class PasswordInput extends Component {
       hide: !state.hide,
     }));
   }
-
   render() {
-
     return <View style={{flex:1, margin:10, flexDirection:'column'}}>
             <View style={Styles.inputBar}>
               <TextInput secureTextEntry={this.state.hide} placeholder={this.props.ph} value='abc'/>
@@ -130,6 +121,12 @@ class PasswordInput extends Component {
   }
 };
 
+const ButtonText = ({text}) => {
+  return (<View style={Styles.center}>
+  <Text style={{fontSize:8}} >{text}</Text>
+  </View>
+  );
+}
 const NextButton = ({ navigation }) => {
   return (
     <View style={{justifyContent:'center',alignItems:'flex-end',
@@ -140,22 +137,14 @@ const NextButton = ({ navigation }) => {
     </View>
   );
 }
-
-class Cancel extends Component{
-
-  clicked(){
-
-
-  }
-
-  render() {
-    return <View style={{justifyContent:'center',alignItems:'center'}}>
-    <TouchableOpacity onPress={this.clicked}>
-      <Text style={{fontSize:10}}> ยกเลิก </Text>
-    </TouchableOpacity>
-    </View>;
-  }
-};
+const Cancel = ({ navigation }) => {
+  return (<View style={{justifyContent:'center',alignItems:'center'}}>
+  <Button >
+    <Text style={{fontSize:10}}> ยกเลิก </Text>
+  </Button>
+  </View>
+);
+}
 
 const Styles = StyleSheet.create({
   center: {

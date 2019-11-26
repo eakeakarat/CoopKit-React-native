@@ -54,7 +54,7 @@ export default class App extends Component {
           <NormalPeople/>
           <FarmerPeople/>
           
-          <View style={{marginTop: 20,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
+          <View style={{marginTop: 150,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
             <Cancel navigation={this.props.navigation}/>
             <NextButton navigation={this.props.navigation}/>
           </View>
@@ -68,21 +68,19 @@ export default class App extends Component {
 
 
 
-class NormalPeople extends Component {
-  render() {
-    return <View style={Styles.peopleButton}>
+const NormalPeople = () => {
+    return (<View style={Styles.peopleButton}>
     <Text >ผู้ใช้ทั่วไป</Text>
     <Text style={{fontSize: 8 ,color: 'red'}} > *ใช้ได้เฉพาะฟีเจอร์ทั่วไป ไม่สามารถสร้างห้องได้</Text>
-    </View>;
-  }
-};
-class FarmerPeople extends Component {
-  render() {
-    return <View style={Styles.peopleButton}>
+    </View>
+    );
+}
+const FarmerPeople = () => {
+    return (<View style={Styles.peopleButton}>
     <Text >เกษตรกร</Text>
-    </View>;
-  }
-};
+    </View>
+    );
+}
 const ButtonText = ({text}) => {
     return (<View style={Styles.center}>
     <Text style={{fontSize:8}} >{text}</Text>

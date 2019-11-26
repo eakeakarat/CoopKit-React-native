@@ -52,19 +52,19 @@ export default class Register2 extends Component {
         {/* </View> */}
 
         <View style={{marginTop: 30,flex: 0.8,flexDirection: 'column'}} >
-          <HeadText text="ชื่อ-นามสกุล"/>
-          <NameInput ph='ชื่อ-นามสกุล'/>
+          <HeadText text={"ชื่อ-นามสกุล"}/>
+          <NameInput ph={'ชื่อ-นามสกุล'}/>
 
-          <HeadText text="เบอร์โทรศัพท์"/>
-          <PhoneInput ph='เบอร์โทรศัพท์'/>
+          <HeadText text={"เบอร์โทรศัพท์"}/>
+          <PhoneInput ph={'เบอร์โทรศัพท์'}/>
 
-          <HeadText text="เลขบัตรประชาชน"/>
-          <IdInput ph='เลขบัตรประชาชน'/>
+          <HeadText text={"เลขบัตรประชาชน"}/>
+          <IdInput ph={'เลขบัตรประชาชน'}/>
 
-          <HeadText text="ที่อยู่"/>
-          <AddrInput ph='ที่อยู่'/>
+          <HeadText text={"ที่อยู่"}/>
+          <AddrInput ph={'ที่อยู่'}/>
           <View style={{marginTop: 20,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
-            <Cancel/>
+            <Cancel navigation={this.props.navigation}/>
             <NextButton navigation={this.props.navigation}/>
           </View>
         </View>
@@ -75,81 +75,51 @@ export default class Register2 extends Component {
 }
 
 
-class NameInput extends Component {
-  constructor(props){
-    super(props);    
-  }
-
-  render() {
-
-    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
+const NameInput = ({ph}) => {
+    return (<View style={{flex:1, margin:10, flexDirection:'column'}}>
             <View style={Styles.inputBar}>
-              <TextInput placeholder={this.props.ph}/>
+              <TextInput placeholder={ph}/>
             </View>
-          </View>;
-  }
-};
-class PhoneInput extends Component {
-  constructor(props){
-    super(props);    
-  }
-
-  render() {
-
-    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
+    </View>
+    );
+}
+const PhoneInput = ({ph}) => {
+    return (<View style={{flex:1, margin:10, flexDirection:'column'}}>
             <View style={Styles.inputBar}>
-              <TextInput placeholder={this.props.ph}/>
+              <TextInput placeholder={ph}/>
             </View>
-          </View>;
-  }
-};
-class IdInput extends Component {
-  constructor(props){
-    super(props);    
-  }
-
-  render() {
-
-    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
+          </View>
+          );
+}
+const IdInput = ({ph}) => {
+    return (<View style={{flex:1, margin:10, flexDirection:'column'}}>
             <View style={Styles.inputBar}>
-              <TextInput placeholder={this.props.ph}/>
+              <TextInput placeholder={ph}/>
             </View>
-          </View>;
-  }
-};
-class AddrInput extends Component {
-  constructor(props){
-    super(props);    
-  }
-
-  render() {
-
-    return <View style={{flex:1, margin:10, flexDirection:'column'}}>
+          </View>
+    );
+}
+const AddrInput = ({ph}) => {
+    return (<View style={{flex:1, margin:10, flexDirection:'column'}}>
             <View style={Styles.inputBar}>
-              <TextInput placeholder={this.props.ph}/>
+              <TextInput placeholder={ph}/>
             </View>
-          </View>;
-  }
-};
-
-
-
-
-class HeadText extends Component {
-  render() {
-    return <View style={{marginLeft: 15}}>
-    <Text style={{fontSize:8}} >{this.props.text}</Text>
-    </View>;
-  }
-};
+    </View>
+    );
+  
+}
+const HeadText = ({text}) => {
+    return (<View style={{marginLeft: 15}}>
+    <Text style={{fontSize:8}} >{text}</Text>
+    </View>
+    );
+}
 const ButtonText = ({text}) => {
   return (<View style={Styles.center}>
   <Text style={{fontSize:8}} >{text}</Text>
   </View>
   );
 }
-
-
 const NextButton = ({ navigation }) => {
   return (
     <View style={{justifyContent:'center',alignItems:'flex-end',
@@ -160,22 +130,14 @@ const NextButton = ({ navigation }) => {
     </View>
   );
 }
-
-class Cancel extends Component{
-
-  clicked(){
-
-
-  }
-
-  render() {
-    return <View style={{justifyContent:'center',alignItems:'center'}}>
-    <TouchableOpacity onPress={this.clicked}>
-      <Text style={{fontSize:10}}> ยกเลิก </Text>
-    </TouchableOpacity>
-    </View>;
-  }
-};
+const Cancel = ({ navigation }) => {
+  return (<View style={{justifyContent:'center',alignItems:'center'}}>
+  <Button >
+    <Text style={{fontSize:10}}> ยกเลิก </Text>
+  </Button>
+  </View>
+);
+}
 
 const Styles = StyleSheet.create({
   center: {
