@@ -1,39 +1,24 @@
 
 import React, {Component} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
-  StatusBar,
-  Button,
   TextInput,
-  TouchableHighlight,
   TouchableOpacity,
   Image,
   Alert
 } from 'react-native';
+import { Button, Drawer, List, WhiteSpace } from '@ant-design/react-native';
 
-// import {
-//   Header,
-//   LearnMoreLinks,
-//   Colors,
-//   DebugInstructions,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
-
-
-
-// export default class App extends Component {
-class NextPage extends Component {
+export default class App extends Component {
   constructor(props){
     super(props);
   }
 
   render() {
     return (
-
       <ScrollView style={{flex: 1,flexDirection: 'column',}}>
         <View style={{flex: 0.1, flexDirection: 'column'}}>
           <View style={{flex: 1, flexDirection: 'row',padding: 8}}>
@@ -47,15 +32,16 @@ class NextPage extends Component {
             <View style={Styles.progressBar}></View>
             <View style={Styles.gap}></View>
           </View>
+
           <View style={{flex: 1, flexDirection: 'row'}}>
             <View style={Styles.gap}></View>
-            <ButtonText text="สร้างบัญชีผู้ใช้"/>
+            <ButtonText text={"สร้างบัญชีผู้ใช้"}/>
             <View style={Styles.gap}></View>
-            <ButtonText text="ข้อมูลส่วนตัว"/>
+            <ButtonText text={"ข้อมูลส่วนตัว"}/>
             <View style={Styles.gap}></View>
-            <ButtonText text="เลือกประเภทผู้ใช้"/>
+            <ButtonText text={"เลือกประเภทผู้ใช้"}/>
             <View style={Styles.gap}></View>
-            <ButtonText text="รูปบัตรประชาชน"/>
+            <ButtonText text={"รูปบัตรประชาชน"}/>
             <View style={Styles.gap}></View>
           </View> 
         </View>
@@ -64,49 +50,33 @@ class NextPage extends Component {
           
           <View style={{marginTop: 20,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
             <Cancel/>
-            <NextButton/>
+            <NextButton navigation={this.props.navigation} />
           </View>
         </View>
-        
+
       </ScrollView>
     );
   }
 }
 
   
+const ButtonText = ({text}) => {
+  return (<View style={Styles.center}>
+  <Text style={{fontSize:8}} >{text}</Text>
+  </View>
+  );
+}
 
-class ButtonText extends Component {
-  render() {
-    return <View style={Styles.center}>
-    <Text style={{fontSize:8}} >{this.props.text}</Text>
-    </View>;
-  }
-};
-class NextButton extends Component {
-  constructor(props){
-    super(props)
-  }
-
-  clicked(){
-
-  }
-  render() {
-    return (
-      <View style={{justifyContent:'center',alignItems:'flex-end',
-      marginRight:20}}>
-        <TouchableOpacity onPress={this.clicked} 
-        // underlayColor="lightgray"
-        >
-          <Image resizeMode="center"
-            source={require('./image/NextButton.png')}
-            style={{justifyContent:'center',alignItems:'center',
-            width:150,height:50}}
-          />
-        </TouchableOpacity>
-      </View>
-    );
-  }
-};
+const NextButton = ({ navigation }) => {
+  return (
+    <View style={{justifyContent:'center',alignItems:'flex-end',
+    marginRight:20}}>
+      <Button onPress={() => navigation.navigate('Register1')} >
+        เสร็จสิ้น
+      </Button>
+    </View>
+  );
+}
 class Cancel extends Component{
 
   clicked(){

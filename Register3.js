@@ -1,34 +1,22 @@
 
-import Icon from 'react-native-vector-icons/FontAwesome';
 import React, {Component} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
-  StatusBar,
-  Button,
   TextInput,
   TouchableOpacity,
   Image,
   Alert
 } from 'react-native';
-import { Router, Scene, Reducer, Actions, ActionConst } from 'react-native-mobx';
-import NextPage from './Register4' ;
-import { observer } from "mobx-react/native";
-
-// import {
-//   Header,
-//   LearnMoreLinks,
-//   Colors,
-//   DebugInstructions,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
-
-
+import { Button, Drawer, List, WhiteSpace } from '@ant-design/react-native';
 
 export default class App extends Component {
+  constructor(props){
+    super(props);
+  }
+
   render() {
     return (
 
@@ -47,13 +35,13 @@ export default class App extends Component {
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <View style={Styles.gap}></View>
-            <ButtonText text="สร้างบัญชีผู้ใช้"/>
+            <ButtonText text={"สร้างบัญชีผู้ใช้"}/>
             <View style={Styles.gap}></View>
-            <ButtonText text="ข้อมูลส่วนตัว"/>
+            <ButtonText text={"ข้อมูลส่วนตัว"}/>
             <View style={Styles.gap}></View>
-            <ButtonText text="เลือกประเภทผู้ใช้"/>
+            <ButtonText text={"เลือกประเภทผู้ใช้"}/>
             <View style={Styles.gap}></View>
-            <ButtonText text="รูปบัตรประชาชน"/>
+            <ButtonText text={"รูปบัตรประชาชน"}/>
             <View style={Styles.gap}></View>
           </View> 
         </View>
@@ -67,8 +55,8 @@ export default class App extends Component {
           <FarmerPeople/>
           
           <View style={{marginTop: 20,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
-            <Cancel/>
-            <NextButton/>
+            <Cancel navigation={this.props.navigation}/>
+            <NextButton navigation={this.props.navigation}/>
           </View>
         </View>
         
@@ -95,55 +83,32 @@ class FarmerPeople extends Component {
     </View>;
   }
 };
-class ButtonText extends Component {
-  render() {
-    return <View style={Styles.center}>
-    <Text style={{fontSize:8}} >{this.props.text}</Text>
-    </View>;
-  }
-};
-class NextButton extends Component {
-  constructor(props){
-    super(props)
-  }
-
-  clicked(){
-    <Router >
-      <Scene key="nextapp" component={NextPage} title="Next" type={ActionConst.REPLACE} initial={true} />
-    </Router>
-  }
-  render() {
-    return (
-      <View style={{justifyContent:'center',alignItems:'flex-end',
-      marginRight:20}}>
-        <TouchableOpacity onPress={this.clicked} 
-        // underlayColor="lightgray"
-        >
-          <Image resizeMode="center"
-            source={require('./image/NextButton.png')}
-            style={{justifyContent:'center',alignItems:'center',
-            width:150,height:50}}
-          />
-        </TouchableOpacity>
-      </View>
+const ButtonText = ({text}) => {
+    return (<View style={Styles.center}>
+    <Text style={{fontSize:8}} >{text}</Text>
+    </View>
     );
-  }
-};
-class Cancel extends Component{
+}
 
-  clicked(){
+const NextButton = ({ navigation }) => {
+  return (
+    <View style={{justifyContent:'center',alignItems:'flex-end',
+    marginRight:20}}>
+      <Button onPress={() => navigation.navigate('Register4')} >
+        ต่อไป
+      </Button>
+    </View>
+  );
+}
 
-
-  }
-
-  render() {
-    return <View style={{justifyContent:'center',alignItems:'center'}}>
-    <TouchableOpacity onPress={this.clicked}>
+const Cancel = ({ navigation }) => {
+    return (<View style={{justifyContent:'center',alignItems:'center'}}>
+    <Button >
       <Text style={{fontSize:10}}> ยกเลิก </Text>
-    </TouchableOpacity>
-    </View>;
-  }
-};
+    </Button>
+    </View>
+  );
+}
 
 const Styles = StyleSheet.create({
   center: {
