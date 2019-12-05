@@ -8,54 +8,45 @@ import {
   View,
   Text,
   StatusBar,
-  Button,
   TextInput,
   TouchableHighlight,
   TouchableOpacity,
   Image,
   Alert
 } from 'react-native';
-
-// import {
-//   Header,
-//   LearnMoreLinks,
-//   Colors,
-//   DebugInstructions,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
-
+import { Button, Drawer, List, WhiteSpace } from '@ant-design/react-native';
 
 
 export default class App extends Component {
   render() {
     return (
     
-      <View style={{flex: 1,alignItems:'center'}}>
+      <ScrollView style={{flex: 1}}>
         <View style={{flexDirection: 'column',justifyContent:'flex-start',alignItems:'center'}}>
           <View style={{marginTop:50}}>
           <FacebookLogin/>
           </View>
-          <View style={{marginBottom:50}}>
+          <View style={{marginBottom:50, marginTop: 30}}>
           <GoogleLogin/>
           </View>
-          <View style={{borderBottomWidth: 1,width:250,alignItems:'center'}}>
+          <View style={{width:250,alignItems:'center'}}>
           <Text> หรือ </Text>
           </View>
-          <View style={{flexDirection: 'column',justifyContent:'flex-start',alignItems:'center'}} >
+          <View style={{marginTop:15, flexDirection: 'column',justifyContent:'flex-start',alignItems:'center'}} >
           <UserInput ph='อีเมล์'/>
           <PasswordInput ph='รหัสผ่าน'/>
-          <View style={{marginTop: 10}}></View>
+          <View style={{marginTop: 10, marginBottom:70}}>
           <ForgotPassword/>
-          <View style={{marginTop: 10}}></View>
+          </View>
           </View>
         </View> 
-        <View Styles={{flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
-          <CreateAccount/>
-          <View style={{marginTop: 20,alignItems:'flex-end'}}>
+        <View Styles={{marginTop: 50,flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
+          <CreateAccount navigation={this.props.navigation}/>
+          <View style={{marginTop: 30,alignItems:'center'}}>
           <LoginButton/>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -148,23 +139,15 @@ class PasswordInput extends Component {
   }
 };
 class LoginButton extends Component {
-  constructor(props){
-    super(props)
-  }
 
-  clicked(){
-
-  }
   render() {
     return (
       <View style={{justifyContent:'flex-end',alignItems:'flex-end'}}>
-        <TouchableOpacity onPress={this.clicked}>
-          <Image resizeMode="center"
-            source={require('./image/NextButton.png')}
-            style={{justifyContent:'center',alignItems:'center',
-            width:150,height:50}}
-          />
-        </TouchableOpacity>
+          <Button style={{backgroundColor:'#009688'}}>
+          <Text style={{justifyContent:'center'}} >
+            เข้าสู่ระบบ
+          </Text>
+          </Button>
       </View>
     );
   }
@@ -203,26 +186,19 @@ class ForgotPassword extends Component {
   }
 
   render() {
-    return <View style={{justifyContent:'center',alignItems:'center'}}>
+    return <View style={{marginLeft: '70%', flexDirection:'column' ,justifyContent:'flex-end' ,alignItems:'center'}}>
     <TouchableOpacity onPress={this.clicked}>
-      <Text style={{fontSize:10,textDecorationLine: 'underline'}}> ลืมรหัสผ่าน </Text>
+      <Text style={{fontSize:10,textDecorationLine: 'underline',color:'skyblue'}}> ลืมรหัสผ่าน? </Text>
     </TouchableOpacity>
     </View>;
   }
 };
-class CreateAccount extends Component {
-  clicked(){
-
-
-  }
-
-  render() {
-    return <View style={{justifyContent:'center',alignItems:'center'}}>
-    <TouchableOpacity onPress={this.clicked}>
+const CreateAccount = ( {navigation} ) => {
+    return (<View style={{justifyContent:'center',alignItems:'center'}}>
+    <TouchableOpacity onPress={() => navigation.navigate('Register1')}>
       <Text style={{fontSize:13,textDecorationLine: 'underline'}}> สร้างบัญชีผู้ใช้ </Text>
     </TouchableOpacity>
-    </View>;
-  }
+    </View>);
 };
 class FacebookLogin extends Component {
   clicked(){
@@ -270,24 +246,15 @@ const Styles = StyleSheet.create({
     flex:0.25,
   },
   textBox: {
-    // justifyContent:'center',
-    // alignItems:'center',
-    // borderRadius: 4,
     borderWidth: 1,
     borderColor: 'black',
     flexDirection: 'row',
     flex: 0.2,
-    // width: 250,
-    // height: 100
   },
   roomBox:{
     borderRadius: 4,
     borderWidth: 1,
     borderColor: 'black',
-    // flexDirection:'row',
-    // flex:1,
-    // alignItems: 'center',
-    // justifyContent:'center',
     width: 250
   }
 });

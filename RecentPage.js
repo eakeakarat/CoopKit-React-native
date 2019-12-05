@@ -115,8 +115,8 @@ export default class RecentPage extends Component {
 
         <ScrollView style={{flexDirection:'column',marginTop:5,backgroundColor: '#FAFAFA'}}>
           <Text style={{fontSize:20,marginLeft:20,marginTop:10}}>ภายในวันนี้</Text>
-          <RoomBanana/>
-          <RoomPig/>
+          <RoomBanana navigation={this.props.navigation} />
+          <RoomPig navigation={this.props.navigation} />
           <View style={{height:20}}/>
 
         </ScrollView>
@@ -125,76 +125,6 @@ export default class RecentPage extends Component {
     );
   }
 };
-
-// class RoomBanana extends Component {
-//   constructor (props){
-//     super(props);
-//   }
-//   render(){
-//     return  <View style={{width:310,height:310,alignItems:'center',marginLeft:10,justifyContent:'space-between'}}>
-//               <TouchableOpacity>
-//                 <View style={{backgroundColor: '#BDBDBD',
-//                               flexDirection:'column',
-//                               width: 310,
-//                               height: 310,
-//                               justifyContent: 'flex-end',
-//                               alignItems: 'center',
-//                               marginTop: 10 ,
-//                               marginLeft: 25 }}>
-//                     <View style={{height:100,width:310,backgroundColor:'white'}}>
-//                       <Text style={{marginLeft:15,marginTop:15,fontSize:20,fontWeight:'bold'}}> 
-//                         บ้านขายกล้วย 
-//                       </Text>
-//                       <Text style={{marginTop:5,marginLeft:15,fontSize:12}}>
-//                         กล้วยถูก กล้วยดี ต้องกล้วยตานีปลายหวีเหี่ยว......
-//                       </Text>
-//                       <Text style={{justifyContent:'flex-end',marginTop:10,marginLeft:15,color:'green'}}>
-//                         ผลไม้
-//                       </Text>
-//                     </View>
-
-//                 </View>
-//               </TouchableOpacity>
-//             </View>
-
-//   }
-// }
-
-// class RoomPig extends Component {
-//   constructor (props){
-//     super(props);
-//   }
-//   render(){
-//     return  <View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
-//               <TouchableOpacity>
-//                 <View style={{backgroundColor: '#BDBDBD',
-//                               flexDirection:'column',
-//                               width: 310,
-//                               height: 310,
-//                               justifyContent: 'flex-end',
-//                               alignItems: 'center',
-//                               marginTop: 10 ,
-//                               marginLeft: 25, }}>
-//                     <View style={{height:100,width:310,backgroundColor:'white'}}>
-//                       <Text style={{marginLeft:15,marginTop:15,fontSize:20,fontWeight:'bold'}}> 
-//                         คนเลี้ยงหมู 
-//                       </Text>
-//                       <Text style={{marginTop:5,marginLeft:15,fontSize:12}}>
-//                         อู๊ดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ.....
-//                       </Text>
-//                       <Text style={{justifyContent:'flex-end',marginTop:10,marginLeft:15,color:'green'}}>
-//                         เนื้อสัตว์
-//                       </Text>
-//                     </View>
-
-//                 </View>
-//               </TouchableOpacity>
-//             </View>
-
-//   }
-// }
-
-
 
 
 const styles = StyleSheet.create({

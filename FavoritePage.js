@@ -123,9 +123,8 @@ export default class RecommendPage extends Component {
         </View>
 
         <ScrollView style={{flexDirection:'column',marginTop:5,backgroundColor: '#FAFAFA'}}>
-          
-          <RoomBanana/>
-          <RoomPig/>
+          <RoomBanana navigation={this.props.navigation} />
+          <RoomPig navigation={this.props.navigation} />
           <View style={{height:20}}/>
 
         </ScrollView>

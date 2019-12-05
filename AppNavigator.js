@@ -12,6 +12,7 @@ import SearchPage from './SearchPage';
 import TypePage from './TypePage';
 import Favorite from './FavoritePage';
 import LoginPage from './Login';
+import AnnousePage from './AnnouseRoom'
 
 
 const AppStack = createStackNavigator({
@@ -21,6 +22,7 @@ const AppStack = createStackNavigator({
     RoomPage: {screen: RoomPage},
     TypePage: {screen: TypePage},
     LoginPage: { screen: LoginPage},
+    AnnousePage: { screen: AnnousePage},
     Register1: { screen: Register1 },
     Register2: { screen: Register2 },
     Register3: { screen: Register3 },

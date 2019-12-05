@@ -22,27 +22,27 @@ export default class App extends Component {
       <ScrollView style={{flex: 1,flexDirection: 'column',}}>
         <View style={{flex: 0.1, flexDirection: 'column'}}>
           <View style={{flex: 1, flexDirection: 'row',padding: 8}}>
-            <View style={Styles.gap}></View>
-            <View style={Styles.progressBar}></View>
-            <View style={Styles.gap}></View>
-            <View style={Styles.progressBar}></View>
-            <View style={Styles.gap}></View>
-            <View style={Styles.progressBar}></View>
-            <View style={Styles.gap}></View>
-            <View style={Styles.progressBar}></View>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
+            <View style={RegisterStyles.progressBar}></View>
+            <View style={RegisterStyles.gap}></View>
+            <View style={RegisterStyles.progressBar}></View>
+            <View style={RegisterStyles.gap}></View>
+            <View style={RegisterStyles.progressBar}></View>
+            <View style={RegisterStyles.gap}></View>
+            <View style={RegisterStyles.progressBar}></View>
+            <View style={RegisterStyles.gap}></View>
           </View>
 
           <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
             <ButtonText text={"สร้างบัญชีผู้ใช้"}/>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
             <ButtonText text={"ข้อมูลส่วนตัว"}/>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
             <ButtonText text={"เลือกประเภทผู้ใช้"}/>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
             <ButtonText text={"รูปบัตรประชาชน"}/>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
           </View> 
         </View>
         
@@ -72,7 +72,7 @@ export default class App extends Component {
 
   
 const ButtonText = ({text}) => {
-  return (<View style={Styles.center}>
+  return (<View style={RegisterStyles.center}>
   <Text style={{fontSize:8}} >{text}</Text>
   </View>
   );
@@ -96,7 +96,7 @@ const Cancel = ({ navigation }) => {
   </View>
 );
 }
-const Styles = StyleSheet.create({
+const RegisterStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -105,7 +105,7 @@ const Styles = StyleSheet.create({
   },center: {
     justifyContent:'center',
     alignItems:'center',
-    width: '20%'
+    width: '28%'
   },
   inputBar:{
     borderBottomWidth: 1,
@@ -117,14 +117,14 @@ const Styles = StyleSheet.create({
   },
   progressBar: {
    height: 20,
-   width: '20%',
+   width: '28%',
    backgroundColor: 'green',
    borderColor: '#000',
    borderWidth: 2,
    borderRadius: 5,
  },progressBarInactive: {
    height: 20,
-   width: '20%',
+   width: '28%',
    backgroundColor: 'grey',
    borderColor: '#000',
    borderWidth: 2,

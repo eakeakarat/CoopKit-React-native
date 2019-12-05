@@ -42,7 +42,7 @@ export default class RecommendPage extends Component {
   }
   render() {
     const sidebar = (
-      <ScrollView style={[styles.container]}>
+      <ScrollView style={{flex:1}}>
         <View style={{height:150,backgroundColor:'gray',justifyContent:'flex-end'}}>
           <Button style={{width:100,height:30,marginBottom:20,marginLeft:20}} onPress={() => this.props.navigation.navigate('LoginPage')} >
             <Text style={{fontSize:11}}>
@@ -218,28 +218,4 @@ class TypeWeedsAndGoods extends Component {
            </View>
   }
 }
-
-
-
-
-
-
-const styles = StyleSheet.create({
-
-  button: {
-
-  },
-  
-  box: {
-    backgroundColor: '#BDBDBD',
-    width: 310,
-    height: 210,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 10 ,
-    marginLeft: 25 ,
-    
-    
-  },
-});
 

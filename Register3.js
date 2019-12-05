@@ -11,6 +11,8 @@ import {
   Alert
 } from 'react-native';
 import { Button, Drawer, List, WhiteSpace } from '@ant-design/react-native';
+import {Cancel} from './Register.js';
+
 
 export default class App extends Component {
   constructor(props){
@@ -21,40 +23,41 @@ export default class App extends Component {
     return (
 
       <ScrollView style={{flex: 1,flexDirection: 'column',}}>
-        <View style={{flex: 0.1, flexDirection: 'column'}}>
+        <View style={{marginTop:20, flex: 0.1, flexDirection: 'column'}}>
           <View style={{flex: 1, flexDirection: 'row',padding: 8}}>
-            <View style={Styles.gap}></View>
-            <View style={Styles.progressBar}></View>
-            <View style={Styles.gap}></View>
-            <View style={Styles.progressBar}></View>
-            <View style={Styles.gap}></View>
-            <View style={Styles.progressBar}></View>
-            <View style={Styles.gap}></View>
-            <View style={Styles.progressBarInactive}></View>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
+            <View style={RegisterStyles.progressBar}></View>
+            <View style={RegisterStyles.gap}></View>
+            <View style={RegisterStyles.progressBar}></View>
+            <View style={RegisterStyles.gap}></View>
+            <View style={RegisterStyles.progressBar}></View>
+            <View style={RegisterStyles.gap}></View>
+            {/* <View style={RegisterStyles.progressBarInactive}></View>
+            <View style={RegisterStyles.gap}></View> */}
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
             <ButtonText text={"สร้างบัญชีผู้ใช้"}/>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
             <ButtonText text={"ข้อมูลส่วนตัว"}/>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
             <ButtonText text={"เลือกประเภทผู้ใช้"}/>
-            <View style={Styles.gap}></View>
-            <ButtonText text={"รูปบัตรประชาชน"}/>
-            <View style={Styles.gap}></View>
+            <View style={RegisterStyles.gap}></View>
+            {/* <ButtonText text={"รูปบัตรประชาชน"}/>
+            <View style={RegisterStyles.gap}></View> */}
           </View> 
         </View>
         {/* <View style={{flex: 0.1, marginTop: 20,borderWidth: 1,flexDirection: 'row'}} > */}
-          {/* <Text style={Styles.center}> 1. </Text> */}
+          {/* <Text style={RegisterStyles.center}> 1. </Text> */}
 
         {/* </View> */}
 
-        <View style={{marginTop: 30,flex: 0.8,flexDirection: 'column'}} >
-          <NormalPeople/>
-          <FarmerPeople/>
+        <View style={{marginTop: 150,flex: 0.8,flexDirection: 'column'}} >
+
+          <NormalPeople action={ this.props } />
+          <FarmerPeople action={ this.props } />
           
-          <View style={{marginTop: 150,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
+          <View style={{marginTop: 180,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
             <Cancel navigation={this.props.navigation}/>
             <NextButton navigation={this.props.navigation}/>
           </View>
@@ -68,21 +71,37 @@ export default class App extends Component {
 
 
 
-const NormalPeople = () => {
-    return (<View style={Styles.peopleButton}>
+const NormalPeople = (click) => {
+  const clicked = ( {action} ) => {
+
+
+  };
+
+
+    return ( <TouchableOpacity onPress={clicked( {click} )} >
+    <View style={RegisterStyles.peopleButton}>
     <Text >ผู้ใช้ทั่วไป</Text>
     <Text style={{fontSize: 8 ,color: 'red'}} > *ใช้ได้เฉพาะฟีเจอร์ทั่วไป ไม่สามารถสร้างห้องได้</Text>
     </View>
+    </TouchableOpacity>
     );
 }
-const FarmerPeople = () => {
-    return (<View style={Styles.peopleButton}>
+
+const FarmerPeople = (click) => {
+  const clicked = ( {action} ) => {
+
+
+  };
+
+    return ( <TouchableOpacity onPress={clicked( {click} )}  >
+    <View style={RegisterStyles.peopleButton}>
     <Text >เกษตรกร</Text>
     </View>
+    </TouchableOpacity>
     );
 }
 const ButtonText = ({text}) => {
-    return (<View style={Styles.center}>
+    return (<View style={RegisterStyles.center}>
     <Text style={{fontSize:8}} >{text}</Text>
     </View>
     );
@@ -92,27 +111,20 @@ const NextButton = ({ navigation }) => {
   return (
     <View style={{justifyContent:'center',alignItems:'flex-end',
     marginRight:20}}>
-      <Button onPress={() => navigation.navigate('Register4')} >
-        ต่อไป
+      <Button style={{backgroundColor:'#009688'}} onPress={() => navigation.navigate('LoginPage')} >
+      <Text style={{color:'white'}} >
+        เสร็จสิ้น
+        </Text>
       </Button>
     </View>
   );
 }
 
-const Cancel = ({ navigation }) => {
-    return (<View style={{justifyContent:'center',alignItems:'center'}}>
-    <Button >
-      <Text style={{fontSize:10}}> ยกเลิก </Text>
-    </Button>
-    </View>
-  );
-}
-
-const Styles = StyleSheet.create({
+const RegisterStyles = StyleSheet.create({
   center: {
     justifyContent:'center',
     alignItems:'center',
-    width: '20%'
+    width: '28%'
   },
   inputBar:{
     borderBottomWidth: 1,
@@ -124,14 +136,14 @@ const Styles = StyleSheet.create({
   },
   progressBar: {
    height: 20,
-   width: '20%',
+   width: '28%',
    backgroundColor: 'green',
    borderColor: '#000',
    borderWidth: 2,
    borderRadius: 5,
  },progressBarInactive: {
    height: 20,
-   width: '20%',
+   width: '28%',
    backgroundColor: 'grey',
    borderColor: '#000',
    borderWidth: 2,

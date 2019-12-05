@@ -108,8 +108,8 @@ export default class DrawerIcon extends Component {
         <View style={{ flex: 1}}>
           <View style={{flex:1,flexDirection:'column',backgroundColor: '#FAFAFA'}}>
             <View style={{flexDirection:'row',height:80,backgroundColor: '#1D7480'}}>
-             <TouchableOpacity style={{width:20,marginTop:30,marginLeft:20}}  onPress={() => this.drawer && this.drawer.openDrawer()}>
-              <Image style={{width:20,height:20}} source={require('./iconButton/hamburger.png')}/>
+             <TouchableOpacity  onPress={() => this.drawer && this.drawer.openDrawer()}>
+              <Image style={{width:30,height:30,marginLeft:15,marginTop:20}} source={require('./iconButton/hamburger.png')}/>
              </TouchableOpacity>
       
              <View style={{flex:1,marginLeft:15,marginTop:20,flexDirection:'row'}}> 
@@ -117,7 +117,7 @@ export default class DrawerIcon extends Component {
                 <Image style={{width:30,height:30,marginTop:5}} source={require('./iconButton/Search.png')}/>
                </TouchableOpacity>      */}
                <View style={{flex:1}}>
-                <SearchBar style={{ }}
+                <SearchBar style={{  }}
                   value={this.state.value}
                   placeholder='ค้นหา'
                   onSubmit={value => Alert.alert(value)}
@@ -143,8 +143,8 @@ export default class DrawerIcon extends Component {
 
         <ScrollView style={{flexDirection:'column',marginTop:15,backgroundColor: '#FAFAFA'}}>
           
-          <RoomBanana/>
-          <RoomPig/>
+          <RoomBanana navigation={this.props.navigation} />
+          <RoomPig navigation={this.props.navigation} />
           <View style={{height:20}}/>
 
         </ScrollView>
@@ -158,13 +158,9 @@ export default class DrawerIcon extends Component {
 }
 
 
-export class RoomBanana extends Component {
-  constructor (props){
-    super(props);
-  }
-  render(){
-    return  <View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
-              <TouchableOpacity>
+export const RoomBanana = ({ navigation }) => {
+    return  (<View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
+              <TouchableOpacity onPress={ () => {navigation.navigate("RoomPage")}} >
                 <View style={{backgroundColor: '#BDBDBD',
                               flexDirection:'column',
                               width: 310,
@@ -188,17 +184,12 @@ export class RoomBanana extends Component {
 
                 </View>
               </TouchableOpacity>
-            </View>
-
-  }
+            </View>);
 }
-export class RoomPig extends Component {
-  constructor (props){
-    super(props);
-  }
-  render(){
-    return  <View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
-              <TouchableOpacity>
+
+export const RoomPig = ({ navigation }) => {
+    return (<View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
+              <TouchableOpacity onPress={ () => {navigation.navigate("RoomPage")}} >
                 <View style={{backgroundColor: '#BDBDBD',
                               flexDirection:'column',
                               width: 310,
@@ -221,16 +212,14 @@ export class RoomPig extends Component {
                     </View>
                 </View>
               </TouchableOpacity>
-            </View>
-
-  }
+            </View>);
 }
 
 export const HomeIcon = ({ navigation }) => {
     return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <Button onPress={() => {navigation.navigate('SearchPage')}}>
+            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('SearchPage')}}>
               <Text style={{fontSize:12}}>
                   หน้าแรก
                 </Text>
@@ -242,7 +231,7 @@ export const RecentIcon = ({ navigation }) => {
     return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <Button onPress={() => {navigation.navigate('RecentPage')}}>
+            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('RecentPage')}}>
               <Text style={{fontSize:12}}>
                 ที่เข้าล่าสุด
               </Text>
@@ -255,7 +244,7 @@ export const TypeIcon = ({ navigation }) => {
     return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <Button onPress={() => {navigation.navigate('TypePage')}}>
+            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('TypePage')}}>
               <Text style={{fontSize:12}}>
                   หมวดหมู่
               </Text>
@@ -268,7 +257,7 @@ export const FavoriteIcon = ({ navigation }) => {
     return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <Button onPress={() => {navigation.navigate('Favorite')}}>
+            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('Favorite')}}>
               <Text style={{fontSize:12}}>
                   ที่ชื่นชอบ
               </Text>

@@ -22,15 +22,16 @@ export default class RecommendPage extends Component {
       
           <Text style={{fontSize:20,fontWeight:'bold',marginTop:25,marginLeft:25}}>บ้านขายกล้วย</Text>
           
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <Image style={{width:30,height:30,marginTop:25,marginLeft:65}} source={require('./iconButton/Search.png')}/>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         
         <View style={{flexDirection: 'row',height:50,backgroundColor: '#1D7480'}}>
           
-          <RecentIcon/>
-          <TypeIcon/>
+          <PageButton navigation={this.props.navigation} color={'#FFFF8D'} />
+          <AnnousePage navigation={this.props.navigation} color={'#1D7480'}/>
+
         </View>
 
         <ScrollView style={{flexDirection:'column',backgroundColor: '#FAFAFA'}}>
@@ -54,77 +55,43 @@ export default class RecommendPage extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-        
-        
-        
-        
-        
-
-
       </View>
-      
-      
     );
   }
 };
 
-class BananaHom extends Component {
-  constructor (props){
-    super(props);
-  }
-
-  render(){
+export const BananaHom = () => {
     return <View style={{height:120,width:80,marginTop:15,marginLeft:30,backgroundColor:'white'}}>
             <View style={{height:80,width:80}}>
               <Image style={{height:80,width:80}} source={require('./iconButton/Bananahom.jpg')}/>
             </View>
             <Text>กล้วยหอม 10 บาท/หวี</Text>
            </View>
-  }
 }
-
-class BananaTanee extends Component {
-  constructor (props){
-    super(props);
-  }
-
-  render(){
+export const BananaTanee = () => {
     return <View style={{height:120,width:80,marginTop:15,marginLeft:30,backgroundColor:'white'}}>
             <View style={{height:80,width:80}}>
               <Image style={{height:80,width:80}} source={require('./iconButton/Tanee.jpg')}/>
             </View>
             <Text>กล้วยตานี 20 บาท/หวี</Text>
            </View>
-  }
 }
-
-class BananaNamwa extends Component {
-  constructor (props){
-    super(props);
-  }
-
-  render(){
+export const BananaNamwa = () => {
     return <View style={{height:120,width:80,marginTop:15,marginLeft:30,backgroundColor:'white'}}>
             <View style={{height:80,width:80}}>
               <Image style={{height:80,width:80}} source={require('./iconButton/Namwa.jpg')}/>
             </View>
             <Text>กล้วยน้ำว้า 25 บาท/หวี</Text>
            </View>
-  }
 }
 
-class RecentIcon extends Component {
-  constructor (props){
-    super(props);
-  }
-
-  render(){
-    return <View style={{flexDirection:'column',
+export const PageButton = ({ navigation }) => {
+    return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('RoomPage')}>
               <View style={{borderBottomWidth:5,
-                            borderBottomColor:'#FFFF8D',
+                            borderBottomColor: '#FFFF8D' ,
                             flexDirection:'column',
                             width:200,
                             height:50,
@@ -135,20 +102,18 @@ class RecentIcon extends Component {
               </View>
             </TouchableOpacity>
            </View>
-  }
+      );
 }
 
-class TypeIcon extends Component {
-  constructor (props){
-    super(props);
-  }
-  render(){
-    return <View style={{flexDirection:'column',
+export const AnnousePage = ({ navigation }) => {
+    return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <TouchableOpacity>
-              <View style={{flexDirection:'column',
-                            width:125,
+            <TouchableOpacity onPress={() => navigation.navigate('AnnousePage')}>
+              <View style={{borderBottomWidth:5,
+                            borderBottomColor: '#1D7480' ,
+                            flexDirection:'column',
+                            width:200,
                             height:50,
                             alignItems:'center'}}>
                 <Text style={{fontSize:14,marginTop:5}}>
@@ -156,26 +121,7 @@ class TypeIcon extends Component {
                 </Text>
               </View>
             </TouchableOpacity>
-           </View>
-  }
+           </View>);
 }
 
-const styles = StyleSheet.create({
-
-  button: {
-
-  },
-  
-  box: {
-    backgroundColor: '#BDBDBD',
-    width: 310,
-    height: 210,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 10 ,
-    marginLeft: 25 ,
-    
-    
-  },
-});
 

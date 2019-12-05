@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 
 import React, {Component} from 'react';
 import {
@@ -18,24 +11,17 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export default class RecommendPage extends Component {
+export default class AnnouseRoom extends Component {
   render() {
     return (
       <View style={{flex:1,flexDirection:'column',backgroundColor: '#FAFAFA'}}>
-
         <View style={{flexDirection:'row',height:80,backgroundColor: '#1D7480'}}>
-      
           <Text style={{fontSize:20,fontWeight:'bold',marginTop:25,marginLeft:25}}>บ้านขายกล้วย</Text>
-          
-          <TouchableOpacity>
-            <Image style={{width:30,height:30,marginTop:25,marginLeft:65}} source={require('./iconButton/Search.png')}/>
-          </TouchableOpacity>
         </View>
-        
-        <View style={{flexDirection: 'row',height:50,backgroundColor: '#1D7480'}}>
-          
-          <RecentIcon/>
-          <TypeIcon/>
+
+        <View style={{flexDirection: 'row',height:50,backgroundColor: '#1D7480'}}>          
+          <PageButton navigation={this.props.navigation} color='#1D7480'/>
+          <AnnousePage navigation={this.props.navigation} color='#FFFF8D' />
         </View>
 
         <ScrollView style={{flexDirection:'column',backgroundColor: '#FAFAFA'}}>
@@ -54,83 +40,46 @@ export default class RecommendPage extends Component {
             <Text style={{fontSize:11,marginLeft:10,marginTop:5}}>เกษตรกรท่านใดสนใจเข้าร่วมสหกรณ์ของเรา สมัครเข้ามาได้เลย</Text>
           </View>
         </ScrollView>
-        
-        
-        
-        
-        
-
-
-      </View>
-      
-      
+      </View>  
     );
   }
 };
 
-class RecentIcon extends Component {
-  constructor (props){
-    super(props);
+export const PageButton = ({ navigation }) => {
+  return (<View style={{flexDirection:'column',
+                       flex:1,
+                       alignItems:'center'}}>
+          <TouchableOpacity onPress={() => navigation.navigate('RoomPage')}>
+            <View style={{borderBottomWidth:5,
+                          borderBottomColor: '#1D7480' ,
+                          flexDirection:'column',
+                          width:200,
+                          height:50,
+                          alignItems:'center'}}>
+              <Text style={{fontSize:14,marginTop:5}}>
+                สหกรณ์
+              </Text>
+            </View>
+          </TouchableOpacity>
+         </View>
+    );
   }
-
-  render(){
-    return <View style={{flexDirection:'column',
-                         flex:1,
-                         alignItems:'center'}}>
-            <TouchableOpacity>
-              <View style={{flexDirection:'column',
-                            width:200,
-                            height:50,
-                            alignItems:'center'}}>
-                <Text style={{fontSize:14,marginTop:5}}>
-                  สหกรณ์
-                </Text>
-              </View>
-            </TouchableOpacity>
-           </View>
-  }
-}
-
-class TypeIcon extends Component {
-  constructor (props){
-    super(props);
-  }
-  render(){
-    return <View style={{borderBottomWidth:5,
-                         borderBottomColor:'#FFFF8D',
-                         flexDirection:'column',
-                         flex:1,
-                         alignItems:'center'}}>
-            <TouchableOpacity>
-              <View style={{flexDirection:'column',
-                            width:200,
-                            height:50,
-                            alignItems:'center'}}>
-                <Text style={{fontSize:14,marginTop:5}}>
-                  ประกาศ
-                </Text>
-              </View>
-            </TouchableOpacity>
-           </View>
-  }
-}
-
-const styles = StyleSheet.create({
-
-  button: {
-
-  },
   
-  box: {
-    backgroundColor: '#BDBDBD',
-    width: 310,
-    height: 210,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 10 ,
-    marginLeft: 25 ,
-    
-    
-  },
-});
-
+  export const AnnousePage = ({ navigation }) => {
+    return (<View style={{flexDirection:'column',
+    flex:1,
+    alignItems:'center'}}>
+          <TouchableOpacity onPress={() => navigation.navigate('AnnousePage')}>
+            <View style={{borderBottomWidth:5,
+                          borderBottomColor: '#FFFF8D' ,
+                          flexDirection:'column',
+                          width:200,
+                          height:50,
+                          alignItems:'center'}}>
+              <Text style={{fontSize:14,marginTop:5}}>
+                ประกาศ
+              </Text>
+            </View>
+          </TouchableOpacity>
+         </View>);
+}
