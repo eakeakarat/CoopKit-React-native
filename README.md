@@ -1,1 +1,0 @@
-CoopKit-React-native

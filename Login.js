@@ -52,22 +52,6 @@ export default class App extends Component {
 }
 
 
-class InputText extends Component {
-  
-  render() {
-    return <View style={{borderWidth: 1,
-    margin:10}}>
-    <TextInput placeholder={this.props.ph} style={{}}/>
-    </View>;
-  }
-};
-class ButtonText extends Component {
-  render() {
-    return <View style={Styles.center}>
-    <Text style={{fontSize:10,marginLeft: 5}} >{this.props.text}</Text>
-    </View>;
-  }
-};
 class UserInput extends Component {
   constructor(props){
     super(props);    
@@ -120,7 +104,7 @@ class PasswordInput extends Component {
       />
     </View> */}
     <View style={{flex:1,justifyContent:'flex-start',alignItems:'flex-start'}}>
-      <TextInput secureTextEntry={this.state.hide} placeholder={this.props.ph} value='abc'/>
+      <TextInput secureTextEntry={this.state.hide} placeholder={this.props.ph}/>
     </View>
     {/* <View style={{flex:1, alignItems:'flex-end', justifyContent:'center'}}>
       <TouchableOpacity onPress={this.clicked} 
@@ -138,47 +122,20 @@ class PasswordInput extends Component {
     </View>;
   }
 };
-class LoginButton extends Component {
+const LoginButton = () => {
+  this.clicked = {
 
-  render() {
+  }
     return (
       <View style={{justifyContent:'flex-end',alignItems:'flex-end'}}>
-          <Button style={{backgroundColor:'#009688'}}>
+          <Button style={{backgroundColor:'#009688'}} onPress = {clicked}>
           <Text style={{justifyContent:'center'}} >
             เข้าสู่ระบบ
           </Text>
           </Button>
       </View>
     );
-  }
-};
-class Cancel extends Component{
-
-  clicked(){
-
-
-  }
-
-  render() {
-    return <View style={{justifyContent:'center',alignItems:'center'}}>
-    <TouchableOpacity onPress={this.clicked}>
-      <Text style={{fontSize:10}}> ยกเลิก </Text>
-    </TouchableOpacity>
-    </View>;
-  }
-};
-class UserPic extends Component {
-  render() {
-    return (
-      <View style={{justifyContent:'center',alignItems:'center'}}>
-        <Image resizeMode="center"
-          source={require('./image/User.png')}
-          style={{justifyContent:'center',alignItems:'center',}}
-        />
-      </View>
-    );
-  }
-};
+  };
 class ForgotPassword extends Component {
   clicked(){
 

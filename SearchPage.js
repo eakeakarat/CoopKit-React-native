@@ -131,8 +131,9 @@ export default class DrawerIcon extends Component {
               <TouchableOpacity key={room.name} 
               onPress={() => this.props.navigation.navigate(roomNav) }>
                 <View style={{borderBottomWidth: 0.5,borderColor: 'rgba(0,0,0,0.3)',padding: 10}}>
-                  <Text>{room.name}</Text>
-                  <Text>{room.description}</Text>
+                  <Text style={{fontSize: 18,fontWeight:'bold'}} >{room.name}</Text>
+                  <WhiteSpace/>
+                  <Text style={{fontSize: 12,fontStyle:'italic',color:'rgba(0,0,0,0.5)'}} >{room.description}</Text>
                   {/* <Text>{roomNav}</Text> */}
                 </View>
               </TouchableOpacity>

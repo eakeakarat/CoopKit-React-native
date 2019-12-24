@@ -24,6 +24,7 @@ export default class AnnouseRoom extends Component {
           <AnnousePage navigation={this.props.navigation} color='#FFFF8D' />
         </View>
 
+
         <ScrollView style={{flexDirection:'column',backgroundColor: '#FAFAFA'}}>
           <View style={{height:80,marginTop:15,backgroundColor:'white'}}>
             <Text style={{color:'red',fontSize:16,fontWeight:'400',marginLeft:10,marginTop:5}}>ประกาศสำหรับลูกค้าที่ต้องการซื้อของ</Text>

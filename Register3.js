@@ -17,11 +17,19 @@ import {Cancel} from './Register.js';
 export default class App extends Component {
   constructor(props){
     super(props);
-  }
 
+    // state={
+    //   buttonColor:'white'
+    // };
+  
+    
+
+  };
+  // changeColor(){
+  //     this.setState({buttonColor:'lightgrey'});
+  //   }
   render() {
     return (
-
       <ScrollView style={{flex: 1,flexDirection: 'column',}}>
         <View style={{marginTop:20, flex: 0.1, flexDirection: 'column'}}>
           <View style={{flex: 1, flexDirection: 'row',padding: 8}}>
@@ -54,8 +62,8 @@ export default class App extends Component {
 
         <View style={{marginTop: 150,flex: 0.8,flexDirection: 'column'}} >
 
-          <NormalPeople action={ this.props } />
-          <FarmerPeople action={ this.props } />
+          <People />
+          {/* <FarmerPeople /> */}
           
           <View style={{marginTop: 180,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
             <Cancel navigation={this.props.navigation}/>
@@ -68,38 +76,80 @@ export default class App extends Component {
   }
 }
 
-
-
-
-const NormalPeople = (click) => {
-  const clicked = ( {action} ) => {
-
-
+class People extends Component {
+  state={
+    buttonColor1:'white',
+    buttonColor2:'white'
   };
 
-
-    return ( <TouchableOpacity onPress={clicked( {click} )} >
-    <View style={RegisterStyles.peopleButton}>
+  changeColor(a){
+    if (a == "a"){
+      this.setState({buttonColor1:'lightgrey',buttonColor2:'white'});
+    }else {
+      this.setState({buttonColor2:'lightgrey',buttonColor1:'white'});
+    }
+  }
+  render() {
+    return ( <View>
+    <TouchableOpacity onPress={() => this.changeColor("a")}  >
+    <View style={ {backgroundColor: this.state.buttonColor1,marginTop: 30,
+                    marginLeft: 10,
+                    marginRight: 10,
+                    flex: 1,
+                    borderWidth: 2,
+                    height: 50,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
     <Text >ผู้ใช้ทั่วไป</Text>
     <Text style={{fontSize: 8 ,color: 'red'}} > *ใช้ได้เฉพาะฟีเจอร์ทั่วไป ไม่สามารถสร้างห้องได้</Text>
     </View>
     </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => this.changeColor("b")}  >
+      <View style={ {backgroundColor: this.state.buttonColor2,marginTop: 30,
+                marginLeft: 10,
+                marginRight: 10,
+                flex: 1,
+                borderWidth: 2,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+      <Text >เกษตรกร</Text>
+      </View>
+      </TouchableOpacity>
+      </View>
     );
+  }
 }
 
-const FarmerPeople = (click) => {
-  const clicked = ( {action} ) => {
 
+// class FarmerPeople extends Component {
+//   state={
+//     buttonColor:'white'
+//   };
 
-  };
-
-    return ( <TouchableOpacity onPress={clicked( {click} )}  >
-    <View style={RegisterStyles.peopleButton}>
-    <Text >เกษตรกร</Text>
-    </View>
-    </TouchableOpacity>
-    );
-}
+//   changeColor(){
+//     this.setState({buttonColor:'lightgrey'});
+//   }
+//   render() {
+//     return ( <TouchableOpacity onPress={() => this.changeColor()}  >
+//     <View style={ {backgroundColor: this.state.buttonColor,marginTop: 30,
+//                     marginLeft: 10,
+//                     marginRight: 10,
+//                     flex: 1,
+//                     borderWidth: 2,
+//                     height: 50,
+//                     alignItems: 'center',
+//                     justifyContent: 'center',
+//                   }}>
+//     <Text >เกษตรกร</Text>
+//     </View>
+//     </TouchableOpacity>
+//     );
+//   }
+// }
 const ButtonText = ({text}) => {
     return (<View style={RegisterStyles.center}>
     <Text style={{fontSize:8}} >{text}</Text>
@@ -159,7 +209,6 @@ const RegisterStyles = StyleSheet.create({
    height: 50,
    alignItems: 'center',
    justifyContent: 'center',
-
 
  }
 });
