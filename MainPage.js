@@ -140,7 +140,7 @@ export const SearchButton = ({ navigation }) => {
 
 export const RoomBanana = ({ navigation }) => {
     return  (<View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
-              <TouchableOpacity onPress={ () => {navigation.navigate("RoomPage")}} >
+              <TouchableOpacity onPress={ () => {navigation.navigate("RoomBanana")}} >
                 <View style={{backgroundColor: '#BDBDBD',
                               flexDirection:'column',
                               width: 310,
@@ -169,7 +169,7 @@ export const RoomBanana = ({ navigation }) => {
 
 export const RoomPig = ({ navigation }) => {
     return (<View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
-              <TouchableOpacity onPress={ () => {navigation.navigate("RoomPage")}} >
+              <TouchableOpacity onPress={ () => {navigation.navigate("RoomPig")}} >
                 <View style={{backgroundColor: '#BDBDBD',
                               flexDirection:'column',
                               width: 310,
