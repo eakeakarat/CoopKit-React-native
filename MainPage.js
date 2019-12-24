@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {
+  Alert,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -7,15 +8,10 @@ import {
   Text,
   StatusBar,
   Image,
-  TouchableOpacity
-  
+  TouchableOpacity,
 } from 'react-native';
-
-import { Button, Drawer, List, WhiteSpace } from '@ant-design/react-native';
-import { IconFill } from '@ant-design/icons-react-native';
-
-
-
+import { Button, Drawer, List, WhiteSpace, SearchBar } from '@ant-design/react-native';
+import SearchInput from 'react-native-search-filter';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,30 +28,31 @@ const style = {
   backgroundColor: '#ddd',
 };
 
-export default class MainPage extends Component {
-  render(){
-    return (
-      <DrawerIcon/>
-
-    );
-  }
-}
-
-
-class DrawerIcon extends Component {
+export default class DrawerIcon extends Component {
   constructor() {
     super(...arguments);
     this.onOpenChange = isOpen => {
       /* tslint:disable: no-console */
       console.log('Drawer Open? : ', isOpen.toString());
+    }
+    this.state = {
+      value: '',
+      searchTerm: '',
+    };
+    this.onChange = value => {
+      this.setState({ value });
+    };
+    this.clear = () => {
+      this.setState({ value: '' });
     };
   }
-  render() {
 
+
+  render() {
     const sidebar = (
       <ScrollView style={[styles.container]}>
         <View style={{height:150,backgroundColor:'gray',justifyContent:'flex-end'}}>
-          <Button style={{width:100,height:30,marginBottom:20,marginLeft:20}}>
+          <Button style={{width:100,height:30,marginBottom:20,marginLeft:20}} onPress={() => this.props.navigation.navigate('LoginPage')} >
             <Text style={{fontSize:11}}>
               เข้าสู่ระบบ
             </Text>
@@ -63,23 +60,23 @@ class DrawerIcon extends Component {
         </View>
         <Button style={{justifyContent:'flex-start',flexDirection:'row',marginTop:5}}>
           <Image style={{width:25,height:25,justifyContent:'flex-start'}}source={require('./iconButton/Profile.png')}/>
-          <Text style={{justifyContent:'center'}}>
+          <Text style={{justifyContent:'center'}} >
             ข้อมูลส่วนตัว
           </Text>
         </Button>
-        <Button style={{alignItems:'flex-start',marginTop:15}}>
+        <Button style={{alignItems:'flex-start',marginTop:15}} >
           <Image style={{width:30,height:25,justifyContent:'flex-start'}}source={require('./iconButton/Noti.png')}/>
           <Text>
             แจ้งเตือน
           </Text>
         </Button>
-        <Button style={{alignItems:'flex-start',marginTop:15}}>
+        <Button style={{alignItems:'flex-start',marginTop:15}} >
         <Image style={{width:20,height:20,justifyContent:'flex-start'}}source={require('./iconButton/setting.png')}/>
           <Text>
             ตั้งค่า
           </Text>
         </Button>
-        <Button style={{alignItems:'flex-start',marginTop:180}}>
+        <Button style={{alignItems:'flex-start',marginTop:180}} >
           <Image style={{width:20,height:20,justifyContent:'flex-start'}}source={require('./iconButton/Logout.png')}/>
           <Text style={{color:'red'}}>
             ออกจากระบบ
@@ -100,21 +97,33 @@ class DrawerIcon extends Component {
         <View style={{ flex: 1}}>
           <View style={{flex:1,flexDirection:'column',backgroundColor: '#FAFAFA'}}>
             <View style={{flexDirection:'row',height:80,backgroundColor: '#1D7480'}}>
-             <TouchableOpacity style={{width:20,marginTop:30,marginLeft:20}}  onPress={() => this.drawer && this.drawer.openDrawer()}>
-              <Image style={{width:20,height:20}} source={require('./iconButton/hamburger.png')}/>
+             <TouchableOpacity  onPress={() => this.drawer && this.drawer.openDrawer()}>
+              <Image style={{width:30,height:30,marginLeft:15,marginTop:20}} source={require('./iconButton/hamburger.png')}/>
              </TouchableOpacity>
       
-          <Text style={{fontSize:20,fontWeight:'bold',marginTop:25,marginLeft:25}}>Co-Operative Kit</Text>
-          
-          <TouchableOpacity>
-            <Image style={{width:30,height:30,marginTop:25,marginLeft:65}} source={require('./iconButton/Search.png')}/>
-          </TouchableOpacity>
+             <View style={{flex:1,marginLeft:15,marginTop:20,flexDirection:'row'}}> 
+               <View style={{flex:1}}>
+                 <SearchButton navigation={this.props.navigation}/>
+              </View>
+             </View>
         </View>
         
-       
+        <View style={{flexDirection: 'row',height:50,backgroundColor: '#1D7480'}}>
+          <HomeIcon navigation={this.props.navigation}/>
+          <FavoriteIcon navigation={this.props.navigation}/>
+          <RecentIcon navigation={this.props.navigation}/>
+          <TypeIcon navigation={this.props.navigation}/>
+        </View>
 
+        <ScrollView style={{flexDirection:'column',marginTop:15,backgroundColor: '#FAFAFA'}}>
+          
+          <RoomBanana navigation={this.props.navigation} />
+          <RoomPig navigation={this.props.navigation} />
+          <View style={{height:20}}/>
+
+        </ScrollView>
         
-      </View>
+        </View>
           
         </View>
       </Drawer>
@@ -122,14 +131,16 @@ class DrawerIcon extends Component {
   }
 }
 
+export const SearchButton = ({ navigation }) => {
+  return <TouchableOpacity  style={{height:50}} onPress={ () => {navigation.navigate("SearchPage")}}>
+          <SearchInput editable={false} />
+        </TouchableOpacity>
+}
 
-class RoomBanana extends Component {
-  constructor (props){
-    super(props);
-  }
-  render(){
-    return  <View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
-              <TouchableOpacity>
+
+export const RoomBanana = ({ navigation }) => {
+    return  (<View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
+              <TouchableOpacity onPress={ () => {navigation.navigate("RoomPage")}} >
                 <View style={{backgroundColor: '#BDBDBD',
                               flexDirection:'column',
                               width: 310,
@@ -138,6 +149,7 @@ class RoomBanana extends Component {
                               alignItems: 'center',
                               marginTop: 10 ,
                               marginLeft: 25 }}>
+                    <Image style={{width:310,height:210}} source={require('./iconButton/bananaRoom.jpg')}/>
                     <View style={{height:100,width:310,backgroundColor:'white'}}>
                       <Text style={{marginLeft:15,marginTop:15,fontSize:20,fontWeight:'bold'}}> 
                         บ้านขายกล้วย 
@@ -152,18 +164,12 @@ class RoomBanana extends Component {
 
                 </View>
               </TouchableOpacity>
-            </View>
-
-  }
+            </View>);
 }
 
-class RoomPig extends Component {
-  constructor (props){
-    super(props);
-  }
-  render(){
-    return  <View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
-              <TouchableOpacity>
+export const RoomPig = ({ navigation }) => {
+    return (<View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
+              <TouchableOpacity onPress={ () => {navigation.navigate("RoomPage")}} >
                 <View style={{backgroundColor: '#BDBDBD',
                               flexDirection:'column',
                               width: 310,
@@ -172,6 +178,7 @@ class RoomPig extends Component {
                               alignItems: 'center',
                               marginTop: 10 ,
                               marginLeft: 25 }}>
+                    <Image style={{width:310,height:210}} source={require('./iconButton/PigRoom.jpg')}/>
                     <View style={{height:100,width:310,backgroundColor:'white'}}>
                       <Text style={{marginLeft:15,marginTop:15,fontSize:20,fontWeight:'bold'}}> 
                         คนเลี้ยงหมู 
@@ -183,106 +190,60 @@ class RoomPig extends Component {
                         เนื้อสัตว์
                       </Text>
                     </View>
-
                 </View>
               </TouchableOpacity>
-            </View>
-
-  }
+            </View>);
 }
 
-class HomeIcon extends Component {
-  constructor (props){
-    super(props);
-  }
-  render(){
-    return <View style={{flexDirection:'column',
+export const HomeIcon = ({ navigation }) => {
+    return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <TouchableOpacity>
-              <View style={{borderBottomWidth:5,
-                            borderBottomColor:'#FFFF8D',
-                            flexDirection:'column',
-                            width:125,
-                            height:50,
-                            alignItems:'center'}}>
-                <Text style={{fontSize:14,marginTop:5}}>
+            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('MainPage')}}>
+              <Text style={{fontSize:12}}>
                   หน้าแรก
                 </Text>
-              </View>
-            </TouchableOpacity>
-           </View>
-  }
+            </Button>
+           </View>);
 }
 
-
-
-class RecentIcon extends Component {
-  constructor (props){
-    super(props);
-  }
-
-  render(){
-    return <View style={{flexDirection:'column',
+export const RecentIcon = ({ navigation }) => {
+    return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <TouchableOpacity>
-              <View style={{flexDirection:'column',
-                            width:125,
-                            height:50,
-                            alignItems:'center'}}>
-                <Text style={{fontSize:14,marginTop:5}}>
-                  ที่เข้าล่าสุด
-                </Text>
-              </View>
-            </TouchableOpacity>
+            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('RecentPage')}}>
+              <Text style={{fontSize:12}}>
+                ที่เข้าล่าสุด
+              </Text>
+            </Button>
            </View>
-  }
+    );
 }
 
-class TypeIcon extends Component {
-  constructor (props){
-    super(props);
-  }
-  render(){
-    return <View style={{flexDirection:'column',
+export const TypeIcon = ({ navigation }) => {
+    return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <TouchableOpacity>
-              <View style={{flexDirection:'column',
-                            width:125,
-                            height:50,
-                            alignItems:'center'}}>
-                <Text style={{fontSize:14,marginTop:5}}>
+            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('TypePage')}}>
+              <Text style={{fontSize:12}}>
                   หมวดหมู่
-                </Text>
-              </View>
-            </TouchableOpacity>
+              </Text>
+            </Button>
            </View>
-  }
+           );
 }
 
-class FavoriteIcon extends Component {
-  constructor (props){
-    super(props);
-  }
-
-  render(){
-    return <View style={{flexDirection:'column',
+export const FavoriteIcon = ({ navigation }) => {
+    return (<View style={{flexDirection:'column',
                          flex:1,
                          alignItems:'center'}}>
-            <TouchableOpacity>
-              <View style={{flexDirection:'column',
-                            width:125,
-                            height:50,
-                            alignItems:'center'}}>
-                <Text style={{fontSize:14,marginTop:5}}>
+            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('Favorite')}}>
+              <Text style={{fontSize:12}}>
                   ที่ชื่นชอบ
-                </Text>
-              </View>
-            </TouchableOpacity>
+              </Text>
+            </Button>
            </View>
-  }
+           );
 }
 
 

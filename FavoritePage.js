@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {
+  Alert,
   Dimensions,
   SafeAreaView,
   StyleSheet,
@@ -18,7 +19,7 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-import {RecentIcon,HomeIcon,FavoriteIcon,TypeIcon,RoomBanana,RoomPig} from './SearchPage'
+import {RecentIcon,HomeIcon,FavoriteIcon,TypeIcon,RoomBanana,RoomPig,SearchButton} from './MainPage'
 import { Button, Drawer, List, WhiteSpace, SearchBar } from '@ant-design/react-native';
 
 
@@ -98,21 +99,11 @@ export default class RecommendPage extends Component {
                 <Image style={{width:30,height:30,marginTop:5}} source={require('./iconButton/Search.png')}/>
                </TouchableOpacity>      */}
                <View style={{flex:1}}>
-                <SearchBar style={{ }}
-                  value={this.state.value}
-                  placeholder='ค้นหา'
-                  onSubmit={value => Alert.alert(value)}
-                  onCancel={this.clear}
-                  onChange={this.onChange}
-                  showCancelButton={false}
-                  Style={{
-                    textAlign: 'left'
-                  }}
+               <SearchButton navigation={this.props.navigation}/>
 
-                  //  disabled={true}
-                  />
               </View>
-             </View>
+            </View>
+            
         </View>
         
         <View style={{flexDirection: 'row',height:50,backgroundColor: '#1D7480'}}>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {
+  Alert,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -8,10 +9,12 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
-  Alert
 } from 'react-native';
-
+import {RecentIcon,HomeIcon,FavoriteIcon,TypeIcon} from './MainPage'
 import { Button, Drawer, List, WhiteSpace, SearchBar } from '@ant-design/react-native';
+
+import SearchInput , { createFilter } from 'react-native-search-filter';
+import Rooms from './rooms';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,18 +31,7 @@ const style = {
   backgroundColor: '#ddd',
 };
 
-// export default class MainPage extends Component {
-//   constructor(props){
-//     super(props);
-//   }
-//   render(){
-//     return (
-//       <DrawerIcon/>
-
-//     );
-//   }
-// }
-
+const KEYS_TO_FILTERS = ['name', 'description'];
 
 export default class DrawerIcon extends Component {
   constructor() {
@@ -47,19 +39,17 @@ export default class DrawerIcon extends Component {
     this.onOpenChange = isOpen => {
       /* tslint:disable: no-console */
       console.log('Drawer Open? : ', isOpen.toString());
-    };
+    }
     this.state = {
-      value: '',
+      searchTerm: '',
     };
-    this.onChange = value => {
-      this.setState({ value });
-    };
-    this.clear = () => {
-      this.setState({ value: '' });
-    };
-  
   }
+  searchUpdated(term) {
+    this.setState({ searchTerm: term })
+  }
+
   render() {
+    const filteredRooms = Rooms.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     const sidebar = (
       <ScrollView style={[styles.container]}>
         <View style={{height:150,backgroundColor:'gray',justifyContent:'flex-end'}}>
@@ -117,19 +107,11 @@ export default class DrawerIcon extends Component {
                 <Image style={{width:30,height:30,marginTop:5}} source={require('./iconButton/Search.png')}/>
                </TouchableOpacity>      */}
                <View style={{flex:1}}>
-                <SearchBar style={{  }}
-                  value={this.state.value}
-                  placeholder='ค้นหา'
-                  onSubmit={value => Alert.alert(value)}
-                  onCancel={this.clear}
-                  onChange={this.onChange}
-                  showCancelButton={false}
-                  Style={{
-                    textAlign: 'left'
-                  }}
-
-                  //  disabled={true}
-                  />
+                <SearchInput
+                  onChangeText={(term) => { this.searchUpdated(term) }}
+                  style={styles.searchInput}
+                  placeholder="Search"
+                />
               </View>
              </View>
         </View>
@@ -142,11 +124,20 @@ export default class DrawerIcon extends Component {
         </View>
 
         <ScrollView style={{flexDirection:'column',marginTop:15,backgroundColor: '#FAFAFA'}}>
-          
-          <RoomBanana navigation={this.props.navigation} />
-          <RoomPig navigation={this.props.navigation} />
-          <View style={{height:20}}/>
-
+          {filteredRooms.map(room => {
+            let roomNav = room.navi;
+            return (
+              // <TouchableOpacity onPress={() => Alert.alert(room.name ,room.description)} key={room.id}>
+              <TouchableOpacity key={room.name} 
+              onPress={() => this.props.navigation.navigate(roomNav) }>
+                <View style={{borderBottomWidth: 0.5,borderColor: 'rgba(0,0,0,0.3)',padding: 10}}>
+                  <Text>{room.name}</Text>
+                  <Text>{room.description}</Text>
+                  {/* <Text>{roomNav}</Text> */}
+                </View>
+              </TouchableOpacity>
+            )
+          })}
         </ScrollView>
         
         </View>
@@ -155,115 +146,6 @@ export default class DrawerIcon extends Component {
       </Drawer>
     );
   }
-}
-
-
-export const RoomBanana = ({ navigation }) => {
-    return  (<View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
-              <TouchableOpacity onPress={ () => {navigation.navigate("RoomPage")}} >
-                <View style={{backgroundColor: '#BDBDBD',
-                              flexDirection:'column',
-                              width: 310,
-                              height: 310,
-                              justifyContent: 'flex-end',
-                              alignItems: 'center',
-                              marginTop: 10 ,
-                              marginLeft: 25 }}>
-                    <Image style={{width:310,height:210}} source={require('./iconButton/bananaRoom.jpg')}/>
-                    <View style={{height:100,width:310,backgroundColor:'white'}}>
-                      <Text style={{marginLeft:15,marginTop:15,fontSize:20,fontWeight:'bold'}}> 
-                        บ้านขายกล้วย 
-                      </Text>
-                      <Text style={{marginTop:5,marginLeft:15,fontSize:12}}>
-                        กล้วยถูก กล้วยดี ต้องกล้วยตานีปลายหวีเหี่ยว......
-                      </Text>
-                      <Text style={{justifyContent:'flex-end',marginTop:10,marginLeft:15,color:'green'}}>
-                        ผลไม้
-                      </Text>
-                    </View>
-
-                </View>
-              </TouchableOpacity>
-            </View>);
-}
-
-export const RoomPig = ({ navigation }) => {
-    return (<View style={{width:310,height:310,alignItems:'center',marginTop:20,marginLeft:10,justifyContent:'space-between'}}>
-              <TouchableOpacity onPress={ () => {navigation.navigate("RoomPage")}} >
-                <View style={{backgroundColor: '#BDBDBD',
-                              flexDirection:'column',
-                              width: 310,
-                              height: 310,
-                              justifyContent: 'flex-end',
-                              alignItems: 'center',
-                              marginTop: 10 ,
-                              marginLeft: 25 }}>
-                    <Image style={{width:310,height:210}} source={require('./iconButton/PigRoom.jpg')}/>
-                    <View style={{height:100,width:310,backgroundColor:'white'}}>
-                      <Text style={{marginLeft:15,marginTop:15,fontSize:20,fontWeight:'bold'}}> 
-                        คนเลี้ยงหมู 
-                      </Text>
-                      <Text style={{marginTop:5,marginLeft:15,fontSize:12}}>
-                        อู๊ดๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ.....
-                      </Text>
-                      <Text style={{justifyContent:'flex-end',marginTop:10,marginLeft:15,color:'green'}}>
-                        เนื้อสัตว์
-                      </Text>
-                    </View>
-                </View>
-              </TouchableOpacity>
-            </View>);
-}
-
-export const HomeIcon = ({ navigation }) => {
-    return (<View style={{flexDirection:'column',
-                         flex:1,
-                         alignItems:'center'}}>
-            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('SearchPage')}}>
-              <Text style={{fontSize:12}}>
-                  หน้าแรก
-                </Text>
-            </Button>
-           </View>);
-}
-
-export const RecentIcon = ({ navigation }) => {
-    return (<View style={{flexDirection:'column',
-                         flex:1,
-                         alignItems:'center'}}>
-            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('RecentPage')}}>
-              <Text style={{fontSize:12}}>
-                ที่เข้าล่าสุด
-              </Text>
-            </Button>
-           </View>
-    );
-}
-
-export const TypeIcon = ({ navigation }) => {
-    return (<View style={{flexDirection:'column',
-                         flex:1,
-                         alignItems:'center'}}>
-            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('TypePage')}}>
-              <Text style={{fontSize:12}}>
-                  หมวดหมู่
-              </Text>
-            </Button>
-           </View>
-           );
-}
-
-export const FavoriteIcon = ({ navigation }) => {
-    return (<View style={{flexDirection:'column',
-                         flex:1,
-                         alignItems:'center'}}>
-            <Button style={{ borderColor:'#1D7480', backgroundColor:'#1D7480'}}  onPress={() => {navigation.navigate('Favorite')}}>
-              <Text style={{fontSize:12}}>
-                  ที่ชื่นชอบ
-              </Text>
-            </Button>
-           </View>
-           );
 }
 
 

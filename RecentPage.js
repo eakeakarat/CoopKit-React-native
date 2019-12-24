@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import {
+  Alert,
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -10,7 +11,7 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-import {RecentIcon,HomeIcon,FavoriteIcon,TypeIcon,RoomBanana,RoomPig} from './SearchPage'
+import {RecentIcon,HomeIcon,FavoriteIcon,TypeIcon,RoomBanana,RoomPig,SearchButton} from './MainPage'
 import { Button, Drawer, List, WhiteSpace, SearchBar } from '@ant-design/react-native';
 
 export default class RecentPage extends Component {
@@ -85,23 +86,8 @@ export default class RecentPage extends Component {
           </TouchableOpacity>
       
           <View style={{flex:1,marginLeft:15,marginTop:20,flexDirection:'row'}}> 
-               {/* <TouchableOpacity>
-                <Image style={{width:30,height:30,marginTop:5}} source={require('./iconButton/Search.png')}/>
-               </TouchableOpacity>      */}
                <View style={{flex:1}}>
-                <SearchBar style={{ }}
-                  value={this.state.value}
-                  placeholder='ค้นหา'
-                  onSubmit={value => Alert.alert(value)}
-                  onCancel={this.clear}
-                  onChange={this.onChange}
-                  showCancelButton={false}
-                  Style={{
-                    textAlign: 'left'
-                  }}
-
-                  //  disabled={true}
-                  />
+                 <SearchButton navigation={this.props.navigation}/>
               </View>
              </View>
         </View>

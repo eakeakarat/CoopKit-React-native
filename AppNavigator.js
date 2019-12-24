@@ -12,10 +12,12 @@ import SearchPage from './SearchPage';
 import TypePage from './TypePage';
 import Favorite from './FavoritePage';
 import LoginPage from './Login';
-import AnnousePage from './AnnouseRoom'
+import AnnousePage from './AnnouseRoom';
 
 
 const AppStack = createStackNavigator({
+
+    MainPage: {screen: MainPage},
     SearchPage: {screen: SearchPage},
     Favorite: {screen: Favorite},
     RecentPage: {screen: RecentPage},
