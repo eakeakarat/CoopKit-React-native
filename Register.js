@@ -10,7 +10,16 @@ import {
   Image,
   Alert
 } from 'react-native';
-import { Button, Drawer, List, WhiteSpace } from '@ant-design/react-native';
+import { Button, WhiteSpace } from '@ant-design/react-native';
+
+const RegisterData = [{
+  email: '',
+  password: '',
+  name: '',
+  tel: '',
+  address: '',
+  id: '',
+}]
 
 export default class Register extends Component {
   constructor(props){
@@ -21,7 +30,7 @@ export default class Register extends Component {
     return (
 
       <ScrollView style={{flex: 1,flexDirection: 'column',}}>
-        <View style={{marginTop:20, flex: 0.1, flexDirection: 'column'}}>
+        {/* <View style={{marginTop:20, flex: 0.1, flexDirection: 'column'}}>
           <View style={{flex: 1, flexDirection: 'row',padding: 8}}>
             <View style={RegisterStyles.gap}></View>
             <View style={RegisterStyles.progressBar}></View>
@@ -30,8 +39,6 @@ export default class Register extends Component {
             <View style={RegisterStyles.gap}></View>
             <View style={RegisterStyles.progressBarInactive}></View>
             <View style={RegisterStyles.gap}></View>
-            {/* <View style={RegisterStyles.progressBarInactive}></View>
-            <View style={RegisterStyles.gap}></View> */}
           </View>
           <View style={{flex: 1, flexDirection: 'row'}}>
             <View style={RegisterStyles.gap}></View>
@@ -41,16 +48,15 @@ export default class Register extends Component {
             <View style={RegisterStyles.gap}></View>
             <ButtonText text={"เลือกประเภทผู้ใช้"}/>
             <View style={RegisterStyles.gap}></View>
-            {/* <ButtonText text={"รูปบัตรประชาชน"}/>
-            <View style={RegisterStyles.gap}></View> */}
           </View> 
-        </View>
+        </View> */}
+        
         {/* <View style={{flex: 0.1, marginTop: 20,borderWidth: 1,flexDirection: 'row'}} > */}
           {/* <Text style={RegisterStyles.center}> 1. </Text> */}
 
         {/* </View> */}
 
-        <View style={{flex: 0.8,flexDirection: 'column',marginTop:50,justifyContent:'space-between'}} >
+        <View style={{flex: 0.8,flexDirection: 'column',marginTop:20,justifyContent:'space-between'}} >
           <UserInput ph='อีเมล์' ph1='ยืนยันอีเมล์' />
           <WhiteSpace/>
           <PasswordInput ph='รหัสผ่าน'/>
@@ -62,6 +68,31 @@ export default class Register extends Component {
           <WhiteSpace/>
           <WhiteSpace/>
           <PasswordInput ph="ยืนยันรหัสผ่าน"/>
+
+          
+        {/* <View style={{marginTop: 50,flex: 0.8,flexDirection: 'column'}} > */}
+          <WhiteSpace/>
+          <HeadText text={"ชื่อ-นามสกุล"}/>
+          <NameInput ph={'ชื่อ-นามสกุล'}/>
+          <WhiteSpace/>
+          <WhiteSpace/>
+
+          <HeadText text={"เบอร์โทรศัพท์"}/>
+          <PhoneInput ph={'เบอร์โทรศัพท์'}/>
+          <WhiteSpace/>
+          <WhiteSpace/>
+
+          <HeadText text={"เลขบัตรประชาชน"}/>
+          <IdInput ph={'เลขบัตรประชาชน'}/>
+          <WhiteSpace/>
+          <WhiteSpace/>
+
+          <HeadText text={"ที่อยู่"}/>
+          <AddrInput ph={'ที่อยู่'}/>
+
+          {/* <View style={{marginTop: 150,flex: 0.8,flexDirection: 'column'}} > */}
+          <People/>
+
           <View style={{marginTop:80 ,flexDirection:'row',flex:1,justifyContent:'flex-end'}}>
             <Cancel navigation={this.props.navigation}/>
             <NextButton navigation={this.props.navigation}/>
@@ -136,9 +167,9 @@ const NextButton = ({ navigation }) => {
   return (
     <View style={{justifyContent:'center',alignItems:'flex-end',
     marginRight:20}}>
-      <Button style={{backgroundColor:'#009688'}} onPress={() => navigation.navigate('Register2')} >
-        <Text style={{color:'white'}} >
-        ต่อไป
+      <Button style={{backgroundColor:'#009688'}} onPress={ () => navigation.navigate('LoginPage')} >
+      <Text style={{color:'white'}} >
+        เสร็จสิ้น
         </Text>
       </Button>
     </View>
@@ -152,6 +183,93 @@ export const Cancel = ({ navigation }) => {
   </View>
   )
 };
+const NameInput = ({ph}) => {
+  return (<View style={{flex:1, margin:10, flexDirection:'column'}}>
+          <View style={RegisterStyles.inputBar}>
+            <TextInput placeholder={ph}/>
+          </View>
+  </View>
+  );
+}
+const PhoneInput = ({ph}) => {
+  return (<View style={{flex:1, margin:10, flexDirection:'column'}}>
+          <View style={RegisterStyles.inputBar}>
+            <TextInput placeholder={ph}/>
+          </View>
+        </View>
+        );
+}
+const IdInput = ({ph}) => {
+  return (<View style={{flex:1, margin:10, flexDirection:'column'}}>
+          <View style={RegisterStyles.inputBar}>
+            <TextInput placeholder={ph}/>
+          </View>
+        </View>
+  );
+}
+const AddrInput = ({ph}) => {
+  return (<View style={{flex:1, margin:10, flexDirection:'column'}}>
+          <View style={RegisterStyles.inputBar}>
+            <TextInput placeholder={ph}/>
+          </View>
+  </View>
+  );
+
+}
+const HeadText = ({text}) => {
+  return (<View style={{marginLeft: 15}}>
+  <Text style={{fontSize:8, fontWeight:'bold' }} >{text}</Text>
+  </View>
+  );
+}
+
+class People extends Component {
+  state={
+    buttonColor1:'white',
+    buttonColor2:'white'
+  };
+
+  changeColor(a){
+    if (a == "a"){
+      this.setState({buttonColor1:'lightgrey',buttonColor2:'white'});
+    }else {
+      this.setState({buttonColor2:'lightgrey',buttonColor1:'white'});
+    }
+  }
+  render() {
+    return ( <View>
+    <TouchableOpacity onPress={() => this.changeColor("a")}  >
+    <View style={ {backgroundColor: this.state.buttonColor1,marginTop: 30,
+                    marginLeft: 10,
+                    marginRight: 10,
+                    flex: 1,
+                    borderWidth: 2,
+                    height: 50,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+    <Text >ผู้ใช้ทั่วไป</Text>
+    <Text style={{fontSize: 8 ,color: 'red'}} > *ใช้ได้เฉพาะฟีเจอร์ทั่วไป ไม่สามารถสร้างห้องได้</Text>
+    </View>
+    </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => this.changeColor("b")}  >
+      <View style={ {backgroundColor: this.state.buttonColor2,marginTop: 30,
+                marginLeft: 10,
+                marginRight: 10,
+                flex: 1,
+                borderWidth: 2,
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+      <Text >เกษตรกร</Text>
+      </View>
+      </TouchableOpacity>
+      </View>
+    );
+  }
+}
 
 const RegisterStyles = StyleSheet.create({
   center: {
@@ -185,4 +303,5 @@ const RegisterStyles = StyleSheet.create({
     width: '4%'
  }
 });
+
 

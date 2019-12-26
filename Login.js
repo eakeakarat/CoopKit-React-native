@@ -43,7 +43,7 @@ export default class App extends Component {
         <View Styles={{marginTop: 50,flexDirection:'row',justifyContent:'flex-end',alignItems:'flex-end'}}>
           <CreateAccount navigation={this.props.navigation}/>
           <View style={{marginTop: 30,alignItems:'center'}}>
-          <LoginButton/>
+          <LoginButton navigation={this.props.navigation}/>
           </View>
         </View>
       </ScrollView>
@@ -122,13 +122,10 @@ class PasswordInput extends Component {
     </View>;
   }
 };
-const LoginButton = () => {
-  this.clicked = {
-
-  }
+const LoginButton = ( {navigation} ) => {
     return (
       <View style={{justifyContent:'flex-end',alignItems:'flex-end'}}>
-          <Button style={{backgroundColor:'#009688'}} onPress = {clicked}>
+          <Button style={{backgroundColor:'#009688'}} onPress = {() => navigation.navigate("MainPage")}>
           <Text style={{justifyContent:'center'}} >
             เข้าสู่ระบบ
           </Text>

@@ -49,7 +49,7 @@ export const PageButton = ({ navigation }) => {
   return (<View style={{flexDirection:'column',
                        flex:1,
                        alignItems:'center'}}>
-          <TouchableOpacity onPress={() => navigation.navigate('RoomPage')}>
+          <TouchableOpacity onPress={() => navigation.navigate('RoomBanana')}>
             <View style={{borderBottomWidth:5,
                           borderBottomColor: '#1D7480' ,
                           flexDirection:'column',
