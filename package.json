@@ -17,7 +17,7 @@
     "mobx-react": "^6.1.4",
     "native-base": "^2.13.8",
     "react": "16.9.0",
-    "react-native": "0.61.1",
+    "react-native": "0.62.3",
     "react-native-cli": "^2.0.1",
     "react-native-component": "^0.1.9",
     "react-native-elements": "^1.2.3",
